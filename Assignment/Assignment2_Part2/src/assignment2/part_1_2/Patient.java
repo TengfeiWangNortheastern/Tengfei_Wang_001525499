@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package assignment2.part1;
+package assignment2.part_1_2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +14,9 @@ import java.util.List;
  */
 public class Patient{
     private int age;
-    VitalSigns vs;
+    private ArrayList<VitalSigns> history;
+    public Patient() {
 
-    public Patient(VitalSigns vs) {
-        this.vs=vs;
     }
 
     public int getAge() {
@@ -27,8 +26,23 @@ public class Patient{
     public void setAge(int age) {
         this.age = age;
     }
-    
-    public boolean isPatientNormal(){
+
+    public ArrayList<VitalSigns> getHistory() {
+        return history;
+    }
+
+    public void setHistory(ArrayList<VitalSigns> history) {
+        this.history = history;
+    }
+    public VitalSigns newVitalSign(){
+        VitalSigns vs=new VitalSigns();
+        history.add(vs);
+        return vs;
+    }
+    public void deleteVitals(VitalSigns vs) { 
+        history.remove(vs);
+    }
+    public boolean isPatientNormal(VitalSigns vs){
         String ageGroup=vs.getAgeGroup();
         int respiratoryRate=vs.getRespiratoryRate();
         int hearRate=vs.getHeartRate();
@@ -172,5 +186,13 @@ public class Patient{
         }
 
         return true;
+    }
+    public boolean isThisVitalSignNormal(String vsign){
+        // vsign is time of VitalSigns
+        for(VitalSigns vs:history){
+            if(vsign.equals(vs.getTime()))
+                return this.isPatientNormal(vs);
+        }
+        return false;
     }
 }

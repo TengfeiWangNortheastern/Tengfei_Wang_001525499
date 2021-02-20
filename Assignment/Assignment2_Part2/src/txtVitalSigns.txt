@@ -1,0 +1,13 @@
+12
+Newborn 30 120 50 2 4.5
+Newborn 0 0 70 6 13
+Infant 30 119 50 2 4.5
+Infant 30 119 80 10 31
+Toddler 30 119 50 10 22
+Toddler 30 119 50 14 31
+Preschooler 30 119 50 2 4.5
+Preschooler 30 119 90 14 31
+SchoolAge 30 119 50 42 41
+SchoolAge 30 110 110 42 92
+Adolescent 12 55 110 50 111
+Adolescent 12 55 110 51 111

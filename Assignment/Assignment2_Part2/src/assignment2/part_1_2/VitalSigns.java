@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package assignment2.part1;
+package assignment2.part_1_2;
 
 /**
  *
  * @author NURES
  */
 public class VitalSigns {
+    private String time;
     private String ageGroup;
     private int respiratoryRate;
     private int heartRate;
@@ -18,6 +19,14 @@ public class VitalSigns {
     private double weightInPounds;
 
     public VitalSigns() {
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getAgeGroup() {
