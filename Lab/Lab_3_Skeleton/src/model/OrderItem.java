@@ -19,5 +19,32 @@ public class OrderItem {
         this.salesPrice = salesPrice;
         this.quantity = quantity;
     }
-    
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public double getSalesPrice() {
+        return salesPrice;
+    }
+
+    public void setSalesPrice(double salesPrice) {
+        this.salesPrice = salesPrice;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+    @Override
+    public String toString(){
+        return product.toString();
+    }
 }

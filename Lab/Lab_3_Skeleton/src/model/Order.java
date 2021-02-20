@@ -30,4 +30,16 @@ public class Order {
         orderItemList.add(orderItem);
     }
     
+    public void deleteItem(OrderItem item){
+        this.orderItemList.remove(item);
+    }
+    
+    public OrderItem findProduct(Product product){
+        for(OrderItem oi:this.getOrderItemList()){
+            if(product.equals(oi.getProduct())){
+                return oi;
+            }
+        }
+        return null;
+    }
 }
