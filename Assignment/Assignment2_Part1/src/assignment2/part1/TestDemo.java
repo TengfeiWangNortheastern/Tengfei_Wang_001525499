@@ -14,7 +14,7 @@ public class TestDemo {
     public static void main(String[] args) {
         VitalSigns vs;
         Patient patient;
-        int numberOfPatients,numberOfVitalSigns;
+        int numberOfPatients;
         Scanner sc=new Scanner(System.in);
         System.out.print("Please input number of patients: ");
         numberOfPatients=sc.nextInt();
@@ -23,7 +23,6 @@ public class TestDemo {
             numberOfPatients = sc.nextInt();
         }
         for(int i=0;i<numberOfPatients;i++){
-            numberOfVitalSigns=sc.nextInt();
             vs=new VitalSigns();
             vs.setAgeGroup(sc.next());
             vs.setRespiratoryRate(sc.nextInt());
@@ -34,7 +33,7 @@ public class TestDemo {
             
             patient=new Patient(vs);
             if(!patient.isPatientNormal()) System.out.println("***"+vs.toString()+" "+"this is abnormal!");
-            System.out.println(vs.toString());
+            else System.out.println(vs.toString());
         }
         
     }

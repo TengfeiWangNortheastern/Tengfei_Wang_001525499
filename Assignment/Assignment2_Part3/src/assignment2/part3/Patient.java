@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package assignment2.part_1_2;
+package assignment2.part3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -208,7 +208,7 @@ public class Patient{
 
         return true;
     }
-        public boolean isTheTimeVitalSignsNormal(String vsign){
+    public boolean isThisVitalSignNormal(String vsign){
         // vsign is time of VitalSigns
         for(VitalSigns vs:history){
             if(vsign.equals(vs.getTime()))
@@ -216,6 +216,4 @@ public class Patient{
         }
         return false;
     }
-
-    }
-
+}
