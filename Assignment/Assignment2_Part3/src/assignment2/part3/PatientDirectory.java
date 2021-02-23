@@ -13,11 +13,11 @@ import java.util.List;
  *
  * @author NURES
  */
-public class PatientList {
+public class PatientDirectory {
     List<Patient> patientList;
 
-    public PatientList() {
-        patientList=new ArrayList<>();
+    public PatientDirectory() {
+        patientList=new ArrayList<Patient>();
     }
 
     public List<Patient> getPatientList() {
