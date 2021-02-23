@@ -208,7 +208,7 @@ public class Patient{
 
         return true;
     }
-        public boolean isTheTimeVitalSignsNormal(String vsign){
+    public boolean areTheVitalSignsAtTheTimeNormal(String vsign){
         // vsign is time of VitalSigns
         for(VitalSigns vs:history){
             if(vsign.equals(vs.getTime()))

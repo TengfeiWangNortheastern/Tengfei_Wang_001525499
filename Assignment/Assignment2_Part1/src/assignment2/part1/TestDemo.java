@@ -32,8 +32,8 @@ public class TestDemo {
             vs.setWeightInPounds(sc.nextDouble());
             
             patient=new Patient(vs);
-            if(!patient.isPatientNormal()) System.out.println("***"+vs.toString()+" "+"this is abnormal!");
-            else System.out.println(vs.toString());
+            if(!patient.isPatientNormal()) System.out.println("Patient"+(i+1)+": "+vs.toString()+" "+"this is abnormal!");
+            else System.out.println("Patient"+(i+1)+": "+vs.toString());
         }
         
     }

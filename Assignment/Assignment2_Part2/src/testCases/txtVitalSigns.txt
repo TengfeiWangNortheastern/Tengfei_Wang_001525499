@@ -12,4 +12,4 @@ Randy Taylor
 2012/2/21/15:30 SchoolAge 30 110 110 42 92
 2017/2/21/15:30 Adolescent 12 55 110 50 111
 2009/2/21/15:30 Adolescent 12 55 110 51 111
-0 WeightInPounds
+1 RespiratoryRate

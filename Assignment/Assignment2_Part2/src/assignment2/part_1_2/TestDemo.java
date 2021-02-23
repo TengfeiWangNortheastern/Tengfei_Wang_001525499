@@ -61,9 +61,9 @@ public class TestDemo {
         indexOfVitalSign=sc.nextInt();
         vitalSignName=sc.next();
         if(patient.getHistory().get(indexOfVitalSign).isThisVitalSignNormal(vitalSignName))
-            System.out.println(vitalSignName+" is normal");
+            System.out.println(vitalSignName+" in current vital sign is normal");
         else
-            System.out.println(vitalSignName+" is abnormal!");
+            System.out.println(vitalSignName+" in current vital sign is abnormal!");
         }
     }
 
