@@ -35,4 +35,13 @@ public class EncounterHistory {
     public void deleteEncounter(Encounter encounter){
         this.encounterList.remove(encounter);
     }
+    public Encounter findEncounter(String timeLine){
+        for(Encounter en:encounterList){
+            if(timeLine.equals(en.getTimeLine())){
+                return en;
+            }
+        }
+        System.out.println("Could not find the encounter at the time line, please try again!");
+        return null;
+    }
 }

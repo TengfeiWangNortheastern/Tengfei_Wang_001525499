@@ -14,7 +14,7 @@ import java.util.List;
  * @author NURES
  */
 public class PatientDirectory {
-    List<Patient> patientList;
+    private List<Patient> patientList;
 
     public PatientDirectory() {
         patientList=new ArrayList<Patient>();
@@ -35,10 +35,6 @@ public class PatientDirectory {
     public Patient findPatient(String name){
         for(Patient p:patientList){
             if(name.equals(p.getFullName())){
-                System.out.println("The records of Vital Signs of "+name+" is: ");
-                for(VitalSigns vs:p.getHistory()){
-                    System.out.println(vs);
-                }
                 return p;
             }
         }

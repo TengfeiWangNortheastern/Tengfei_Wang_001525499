@@ -18,7 +18,7 @@ public class VitalSigns {
     private double weightInKilos;
     private double weightInPounds;
 
-    public VitalSigns() {
+    public VitalSigns() { 
     }
 
     public String getTime() {

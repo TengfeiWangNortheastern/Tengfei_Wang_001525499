@@ -16,9 +16,9 @@ public class Patient{
     private String firstName;
     private String lastName;
     private int age;
-    private ArrayList<VitalSigns> history;
+    private EncounterHistory encounterHistory;
     public Patient() {
-        history=new ArrayList<>();
+        encounterHistory=new EncounterHistory();
     }
 
     public String getFirstName() {
@@ -48,21 +48,14 @@ public class Patient{
         this.age = age;
     }
 
-    public ArrayList<VitalSigns> getHistory() {
-        return history;
+    public EncounterHistory getEncounterHistory() {
+        return encounterHistory;
     }
 
-    public void setHistory(ArrayList<VitalSigns> history) {
-        this.history = history;
+    public void setEncounterHistory(EncounterHistory encounterHistory) {
+        this.encounterHistory = encounterHistory;
     }
-    public VitalSigns newVitalSign(){
-        VitalSigns vs=new VitalSigns();
-        history.add(vs);
-        return vs;
-    }
-    public void deleteVitals(VitalSigns vs) { 
-        history.remove(vs);
-    }
+
     public boolean isPatientNormal(VitalSigns vs){
         String ageGroup=vs.getAgeGroup();
         int respiratoryRate=vs.getRespiratoryRate();
@@ -208,14 +201,14 @@ public class Patient{
 
         return true;
     }
-    public boolean areTheVitalSignsAtTheTimeNormal(String vsign){
-        // vsign is time of VitalSigns
-        for(VitalSigns vs:history){
-            if(vsign.equals(vs.getTime()))
-                return this.isPatientNormal(vs);
-        }
-        return false;
-    }
+//    public boolean areTheVitalSignsAtTheTimeNormal(String vsign){
+//        // vsign is time of VitalSigns
+//        for(VitalSigns vs:history){
+//            if(vsign.equals(vs.getTime()))
+//                return this.isPatientNormal(vs);
+//        }
+//        return false;
+//    }
 
     }
 
