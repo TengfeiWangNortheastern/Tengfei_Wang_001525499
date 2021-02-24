@@ -15,7 +15,7 @@ public class Encounter {
     private String doctorOffice;
 
     public Encounter() {
-        
+        vitalSigns=new VitalSigns();
     }
 
     public Encounter(VitalSigns vitalSigns, String timeLine, String doctorOffice) {

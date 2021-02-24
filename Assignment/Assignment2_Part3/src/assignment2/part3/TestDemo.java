@@ -12,8 +12,25 @@ import java.util.Scanner;
  */
 public class TestDemo {
     public static void main(String[] args) {
+        int numberOfPeople;
+        int numberOFPatients;
+        int numberOfEncounters;
+        
+        SystemMedical systemMedical=new SystemMedical();
+        PatientDirectory patientDirectory=systemMedical.getPatientDirectory();
+        PersonDirectory personDirectory=systemMedical.getPersonDirectory();
+        
+        Person person=personDirectory.newPerson();
+        Patient patient=patientDirectory.newPatient();
+        person.setPatient(patient);
+        
+        EncounterHistory encounterHistory=patient.getEncounterHistory();
+        Encounter encounter=encounterHistory.newEncounter();
+        
+        VitalSigns vitalSigns=encounter.getVitalSigns();
+        
+        
         VitalSigns vs;
-        Patient patient=new Patient();
         int numberOfVitalSigns;
         Scanner sc=new Scanner(System.in);
 

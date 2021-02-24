@@ -16,6 +16,7 @@ public class Patient{
     private String firstName;
     private String lastName;
     private int age;
+    private String fullName=firstName+" "+lastName;
     private EncounterHistory encounterHistory;
     public Patient() {
         encounterHistory=new EncounterHistory();
@@ -37,7 +38,7 @@ public class Patient{
         this.lastName = lastName;
     }
     public String getFullName(){
-        return firstName+" "+lastName;
+        return fullName;
     }
 
     public int getAge() {
