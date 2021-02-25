@@ -31,6 +31,14 @@ public class PersonDirectory {
         personList.add(newPerson);
         return newPerson;
     }
+    public Person newPerson(String fir,String sec,int a){
+        Person newPerson=new Person(fir,sec,a);
+        personList.add(newPerson);
+        return newPerson;
+    }
+    public void addPerson(Person person){
+        personList.add(person);
+    }
     public Person findPerson(String name){
         for(Person p : personList){
             if(name.equals(p.getFullName())){

@@ -12,41 +12,11 @@ import java.util.List;
  *
  * @author NURES
  */
-public class Patient{
-    private String firstName;
-    private String lastName;
-    private int age;
-    private String fullName=firstName+" "+lastName;
-    private EncounterHistory encounterHistory;
+public class Patient extends Person{
+    private EncounterHistory encounterHistory=new EncounterHistory();
+    
     public Patient() {
-        encounterHistory=new EncounterHistory();
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-    public String getFullName(){
-        return fullName;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+        
     }
 
     public EncounterHistory getEncounterHistory() {

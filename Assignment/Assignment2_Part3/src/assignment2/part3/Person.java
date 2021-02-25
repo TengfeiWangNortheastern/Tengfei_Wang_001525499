@@ -13,30 +13,16 @@ public class Person {
     private String firstName;
     private String lastName;
     private int age;
-    private String fullName = firstName+ lastName;
-    private Patient patient;
-    private EncounterHistory encounterHistory;
 
     public Person() {
-        encounterHistory = new EncounterHistory();
     }
 
-    public Patient getPatient() {
-        return patient;
+    public Person(String firstName, String lastName, int age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
     }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
-
-    public EncounterHistory getEncounterHistory() {
-        return encounterHistory;
-    }
-
-    public void setEncounterHistory(EncounterHistory encounterHistory) {
-        this.encounterHistory = encounterHistory;
-    }
-
+    
     public String getFirstName() {
         return firstName;
     }
@@ -54,7 +40,7 @@ public class Person {
     }
 
     public String getFullName() {
-        return fullName;
+        return firstName+" "+lastName;
     }
 
     public int getAge() {
@@ -62,6 +48,10 @@ public class Person {
     }
 
     public void setAge(int age) {
+        if(age<=0){
+            System.out.println("Age input is wrong, please try again!");
+            return;
+        }
         this.age = age;
     }
 }

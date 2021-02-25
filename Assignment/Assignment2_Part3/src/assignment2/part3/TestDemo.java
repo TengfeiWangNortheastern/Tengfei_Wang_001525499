@@ -13,74 +13,100 @@ import java.util.Scanner;
 public class TestDemo {
     public static void main(String[] args) {
         int numberOfPeople;
-        int numberOFPatients;
+        int numberOfPatients;
         int numberOfEncounters;
         
         SystemMedical systemMedical=new SystemMedical();
         PatientDirectory patientDirectory=systemMedical.getPatientDirectory();
         PersonDirectory personDirectory=systemMedical.getPersonDirectory();
         
-        Person person=personDirectory.newPerson();
-        Patient patient=patientDirectory.newPatient();
-        person.setPatient(patient);
+        Person person;
+        Patient patient;
+
         
-        EncounterHistory encounterHistory=patient.getEncounterHistory();
-        Encounter encounter=encounterHistory.newEncounter();
+        EncounterHistory encounterHistory;
+        Encounter encounter;
         
-        VitalSigns vitalSigns=encounter.getVitalSigns();
+        VitalSigns vitalSigns;
         
-        
-        VitalSigns vs;
-        int numberOfVitalSigns;
         Scanner sc=new Scanner(System.in);
-
-        System.out.println("Please input fullName of the patient");
-        patient.setFirstName(sc.next());
-        patient.setLastName(sc.next());
-        System.out.println("Please input number of VitalSigns: ");
-        numberOfVitalSigns=sc.nextInt();
-
-        while(numberOfVitalSigns<=0){
-            System.out.println("Your input is wrong, input again: ");
-            numberOfVitalSigns = sc.nextInt();
-    }
-        //input all the vital signs of a patient
-        // <editor-fold> input all the vital signs of a patient
-        for(int j=0;j<numberOfVitalSigns;j++){
-
-            vs=patient.newVitalSign();
-            vs.setTime(sc.next());
-            vs.setAgeGroup(sc.next());
-            vs.setRespiratoryRate(sc.nextInt());
-            vs.setHeartRate(sc.nextInt());
-            vs.setSystolicBloodPressure(sc.nextInt());
-            vs.setWeightInKilos(sc.nextDouble());
-            vs.setWeightInPounds(sc.nextDouble());
-
-    }
-        // </editor-fold>
+        System.out.println("Please Input The Number Of Patients: ");
+        numberOfPatients=sc.nextInt();
+        isNumberRight(numberOfPatients, sc);
         
-        //test vital signs history
-        System.out.println("Vital Signs History: ");
-        System.out.println("Full Name:"+patient.getFullName());
+        String firstNameOfPatient,lastNameOfPatient;
+        int ageOfPatient;
+        for(int i=0;i<numberOfPatients;i++){
+            patient=patientDirectory.newPatient();
+            encounterHistory=patient.getEncounterHistory();
+            System.out.println("Please input fullName of the patient");
+            firstNameOfPatient=sc.next();
+            lastNameOfPatient=sc.next();
+            patient.setFirstName(firstNameOfPatient);
+            patient.setLastName(lastNameOfPatient);
+            System.out.println("Age of the Patient: ");
+            ageOfPatient=sc.nextInt();
+            patient.setAge(ageOfPatient);
             
-        int countVs=1;
-        for(VitalSigns currentVs:patient.getHistory()){            
-            if(!patient.isPatientNormal(currentVs)) System.out.println("Vital Signs "+countVs+": "+currentVs.toString()+" "+"this is abnormal!");
-            else System.out.println("Vital Signs "+countVs+": "+currentVs.toString());
-            countVs++;
+            personDirectory.addPerson(patient);
+            
+            
+            System.out.println("Please input number of Encounters: ");
+            numberOfEncounters=sc.nextInt();
+            isNumberRight(numberOfEncounters, sc);
+            for(int j=0;j<numberOfEncounters;j++){
+                encounter=encounterHistory.newEncounter();
+                System.out.println("Please set Doctor's Office: ");
+                encounter.setDoctorOffice(sc.next());
+                System.out.println("Please input the timeLine of encounter(2009/2/21/15:30): ");
+                encounter.setTimeLine(sc.next());
+                vitalSigns= encounter.getVitalSigns();
+                setVitalSignsAttributes(vitalSigns, sc);
+                
+            }
+            
+        }
+        
+        System.out.println("-----------------------patientDirectory-----------------------");
+        System.out.println("All the patient is printed below:");
+        int countPatient=1;
+        int countEncounter=1;
+        for(Patient p : patientDirectory.getPatientList()){
+            countEncounter=1;
+            System.out.println("-----------------------");
+            System.out.println("Patient Number: "+(countPatient++)+"    Full Name: "+p.getFullName()+"  Age: "+p.getAge());
+            for(Encounter e:p.getEncounterHistory().getEncounterList()){ 
+                System.out.println("");
+                System.out.println("Encounter "+(countEncounter++)+": "+e.getTimeLine()+"   "+e.getDoctorOffice());
+                System.out.println(e.getVitalSigns().toString());
+                
+            }
+            
+        }
+        System.out.println("---------------------personDirectory-------------------------");
+        person=personDirectory.newPerson("Tom","Holland",21);
+        for(Person p:personDirectory.getPersonList()){
+            countEncounter=1;
+            System.out.println("");
+            System.out.println("Person Number: "+(countPatient++)+"    Full Name: "+p.getFullName()+"  Age: "+p.getAge());
+        }
         }
 
-        //test isThisVitalSignNormal
-        int indexOfVitalSign;
-        String vitalSignName;
-        System.out.println("Please input the index of a vital sign and the name of it(hint:RespiratoryRate HeartRate SystolicBloodPressure WeightInKilos WeightInPounds):");
-        indexOfVitalSign=sc.nextInt();
-        vitalSignName=sc.next();
-        if(patient.getHistory().get(indexOfVitalSign).isThisVitalSignNormal(vitalSignName))
-            System.out.println(vitalSignName+" in current vital sign is normal");
-        else
-            System.out.println(vitalSignName+" in current vital sign is abnormal!");
-        }
+    private static void setVitalSignsAttributes(VitalSigns vs, Scanner sc) {
+        vs.setAgeGroup(sc.next());
+        vs.setRespiratoryRate(sc.nextInt());
+        vs.setHeartRate(sc.nextInt());
+        vs.setSystolicBloodPressure(sc.nextInt());
+        vs.setWeightInKilos(sc.nextDouble());
+        vs.setWeightInPounds(sc.nextDouble());
+    }
+
+    private static void isNumberRight(int numberOf, Scanner sc) {
+        while(numberOf<0){
+            System.out.println("Your input is wrong, input again: ");
+            numberOf = sc.nextInt();
+        }  
+    }
+    
     }
 
