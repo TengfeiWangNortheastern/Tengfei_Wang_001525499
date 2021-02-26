@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package assignment2.part3;
+package assignment2.part4;
 import java.util.Scanner;
 
 /**
@@ -12,12 +12,27 @@ import java.util.Scanner;
  */
 public class TestDemo {
     public static void main(String[] args) {
+        City losAngles=new City();
+        losAngles.setAddressCity("LosAngles,California");
+        
         String[] listVitalSignsName={"RespiratoryRate","HeartRate","SystolicBloodPressure","WeightInKilos","WeightInPounds"};
         int numberOfPeople;
         int numberOfPatients;
         int numberOfEncounters;
+        int numberOfCommnities=3;
+        int numberOfHouses;
         
-        SystemMedical systemMedical=new SystemMedical();
+        Community communities;
+        House houses;
+        communities=losAngles.newCommunity();
+        houses=communities.newHouse();
+        
+        
+                
+                
+                
+        SystemMedical systemMedical=losAngles.getCitymedicalSystem();
+        
         PatientDirectory patientDirectory=systemMedical.getPatientDirectory();
         PersonDirectory personDirectory=systemMedical.getPersonDirectory();
         

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package assignment2.part3;
+package assignment2.part4;
 
 /**
  *
@@ -14,7 +14,7 @@ public class Person {
     private String firstName;
     private String lastName;
     private int age;
-
+    private House house;
     public Person() {
     }
 
@@ -30,6 +30,14 @@ public class Person {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
     }
     
     public String getFirstName() {
