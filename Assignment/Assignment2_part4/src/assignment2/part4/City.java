@@ -17,10 +17,12 @@ public class City {
     private ArrayList<Community> communityList=new ArrayList<Community>();
 
     public City() {
+        citymedicalSystem=new SystemMedical();
     }
 
     public City(String addressCity) {
         this.addressCity = addressCity;
+        citymedicalSystem = new SystemMedical();
     }
 
     public SystemMedical getCitymedicalSystem() {

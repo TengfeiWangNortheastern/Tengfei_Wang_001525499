@@ -15,7 +15,9 @@ public class Person {
     private String lastName;
     private int age;
     private House house;
+    
     public Person() {
+        
     }
 
     public Person(String firstName, String lastName, int age) {

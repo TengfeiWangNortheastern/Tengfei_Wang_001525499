@@ -40,8 +40,10 @@ public class PersonDirectory {
         return newPerson;
     }
     public void addPerson(Person person){
-        person.setId(count++);
-        personList.add(person);
+        if(!personList.contains(person)){            
+            person.setId(count++);
+            personList.add(person);
+        }
     }
     public Person findPerson(String name){
         for(Person p : personList){

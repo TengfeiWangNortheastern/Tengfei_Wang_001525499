@@ -1,4 +1,4 @@
-5
+12
 Randy Taylor
 13
 3
@@ -7,7 +7,7 @@ RoseHouse
 BalckClinic
 2008/12/21/15:31 Infant 20 142 70 6
 BalckClinic
-20021/2/21/11:30 Adolescent 30 106 121 60
+2021/2/21/11:30 Adolescent 30 106 121 60
 Lisa Mech
 2
 3
@@ -37,7 +37,7 @@ ErlWinHouse
 2021/2/21/15:30 Adolescent 12 80 130 51
 Ashly Tompson
 30
-5
+4
 RolandHouse
 1991/2/21/15:22 Infant 30 119 125 8
 ErlWinHouse
@@ -46,5 +46,85 @@ ErlWinHouse
 2020/2/21/15:30 Adolescent 20 55 110 60
 ErlWinHouse
 2021/1/21/15:30 Adolescent 12 80 130 80
-ErlWinHouse
-2021/2/21/15:30 Adolescent 20 80 130 80
+Tompson Madams
+21
+4
+ErlWinHospital
+2011/2/21/15:22 SchoolAge 30 119 125 42
+GCMHouse
+2012/2/21/15:30 SchoolAge 30 110 110 42
+GCMHouse
+2020/2/21/15:30 Adolescent 12 55 110 60
+GCMHouse
+2021/2/21/15:30 Adolescent 12 80 130 51
+Mike Taylor
+13
+3
+RoseHouse
+2008/2/21/15:30 Newborn 30 120 50 2
+BalckClinic
+2008/12/21/15:31 Infant 20 142 70 6
+BalckClinic
+2021/2/21/11:30 Adolescent 30 106 121 60
+Rose Mech
+2
+3
+JohnsHopkinsHospital
+2019/2/21/12:30 Infant 30 80 80 10
+JohnsHopkinsHospital
+2020/2/21/15:30 Toddler 30 119 50 10
+JohnsHopkinsHospital
+2021/2/21/15:30 Toddler 30 119 79 14
+Lisa Jenny
+2
+3
+JohnsHopkinsHospital
+2019/2/21/12:30 Infant 30 80 80 10
+JohnsHopkinsHospital
+2020/2/21/15:30 Toddler 30 119 50 10
+JohnsHopkinsHospital
+2021/2/21/15:30 Toddler 30 119 79 14
+Gucci Mike
+6
+2
+KinderGraden
+2019/2/21/15:30 Preschooler 30 79 79 14
+KinderGraden
+2021/2/21/15:15 SchoolAge 30 119 90 14
+Bachelor Jenny
+2
+3
+JohnsHopkinsHospital
+2019/2/21/12:30 Infant 30 80 80 10
+JohnsHopkinsHospital
+2020/2/21/15:30 Toddler 30 119 50 10
+JohnsHopkinsHospital
+2021/2/21/15:30 Toddler 30 119 79 14
+Roise Mike
+6
+2
+KinderGraden
+2019/2/21/15:30 Preschooler 30 79 79 14
+KinderGraden
+2021/2/21/15:15 SchoolAge 30 119 90 14
+SunSetStreetCommunity
+2
+LisaHouse
+2
+1 2
+RolandHouse4
+3
+3 4 5
+SouthCaliCommunity
+2
+MechHouse
+2
+6 7
+TaylorHouse
+3
+8 9 10
+WestDistrictCommunity
+1
+SimpsonsHouse
+2
+11 12

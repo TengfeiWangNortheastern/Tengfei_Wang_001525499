@@ -5,6 +5,8 @@
  */
 package assignment2.part4;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author NURES
@@ -17,8 +19,13 @@ public class VitalSigns {
     private int  systolicBloodPressure;
     private double weightInKilos;
     private double weightInPounds;
-
+    private ArrayList<String> listVitalSignsName = new ArrayList<String>();
     public VitalSigns() { 
+        listVitalSignsName.add("RespiratoryRate");
+        listVitalSignsName.add("HeartRate");
+        listVitalSignsName.add("SystolicBloodPressure");
+        listVitalSignsName.add("WeightInKilos");
+        listVitalSignsName.add("WeightInPounds");
     }
 
     public String getTime() {
@@ -202,6 +209,10 @@ public class VitalSigns {
     public boolean isThisVitalSignNormal(String vsign){
         // vsign is name of a Vital Sign
         //check if a single vital sign is normal
+        if(!listVitalSignsName.contains(vsign)){
+            System.out.println("Your vital sign input format is wrong");
+            return false;
+        }
         boolean[] signsNormalList=areTheSignsNormal();
         if(vsign.equals("RespiratoryRate")){
             return signsNormalList[0];

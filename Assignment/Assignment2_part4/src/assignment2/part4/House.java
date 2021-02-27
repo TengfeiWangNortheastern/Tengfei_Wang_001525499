@@ -22,7 +22,7 @@ public class House {
     }
 
     public String getAddressFull() {
-        return addressHouse+addressCommunity+addressCity;
+        return addressHouse+","+addressCommunity+","+addressCity;
     }
 
     public House(String addressHouse) {
@@ -57,7 +57,6 @@ public class House {
         this.addressCity = addressCity;
     }
 
-
     public ArrayList<Person> getResidenceList() {
         return residenceList;
     }
@@ -65,9 +64,14 @@ public class House {
     public void setResidenceList(ArrayList<Person> residenceList) {
         this.residenceList = residenceList;
     }
+    
     public void addResidence(Person p){
-        residenceList.add(p);
+        if(!residenceList.contains(p)){            
+            residenceList.add(p);
+            p.setHouse(this); //add cuurent house to person
+        }
     }
+    // add residence to residenceList of a house in test demo, add by person id or person full name
     public void deleteResidence(String name){
         for(Person residencePerson:residenceList){
             if(name.equals(residencePerson.getFullName()))

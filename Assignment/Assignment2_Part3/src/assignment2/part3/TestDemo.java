@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package assignment2.part3;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -11,7 +12,14 @@ import java.util.Scanner;
  * @author 主子
  */
 public class TestDemo {
+    public static ArrayList<String> ageGroups = new ArrayList<String>();
     public static void main(String[] args) {
+        ageGroups.add("Newborn");
+        ageGroups.add("Infant");
+        ageGroups.add("Adolescent");
+        ageGroups.add("Toddler");
+        ageGroups.add("Preschooler");
+        ageGroups.add("SchoolAge");
         String[] listVitalSignsName={"RespiratoryRate","HeartRate","SystolicBloodPressure","WeightInKilos","WeightInPounds"};
         int numberOfPeople;
         int numberOfPatients;
@@ -54,13 +62,19 @@ public class TestDemo {
             
             System.out.println("Please input number of Encounters: ");
             numberOfEncounters=sc.nextInt();
-            isNumberRight(numberOfEncounters, sc);
+            numberOfEncounters=isNumberRight(numberOfEncounters, sc);
             for(int j=0;j<numberOfEncounters;j++){
                 encounter=encounterHistory.newEncounter();
                 System.out.println("Please set Doctor's Office: ");
                 encounter.setDoctorOffice(sc.next());
-                System.out.println("Please input the timeLine of encounter(2009/2/21/15:30): ");
-                encounter.setTimeLine(sc.next());
+                System.out.println("Please input the timeLine of encounter eg. ( 2009/2/21/15:30 ): ");
+                String timeline = sc.next();
+                //check time line here
+                while (!(timeline.matches("[0-9]{4}/[0-9]+/[0-9]+/+[0-9]{2}:[0-9]{2}"))) {
+                    System.out.println("Please input the timeLine of encounter: ");
+                    timeline = sc.next();
+                }
+                encounter.setTimeLine(timeline);
                 vitalSigns= encounter.getVitalSigns();
                 setVitalSignsAttributes(vitalSigns, sc);
                 
@@ -167,20 +181,30 @@ public class TestDemo {
         }
     }
     private static void setVitalSignsAttributes(VitalSigns vs, Scanner sc) {
-        vs.setAgeGroup(sc.next());
-        vs.setRespiratoryRate(sc.nextInt());
-        vs.setHeartRate(sc.nextInt());
-        vs.setSystolicBloodPressure(sc.nextInt());
-        vs.setWeightInKilos(sc.nextDouble());
+        String ageGroup = sc.next();
+        while (!ageGroups.contains(ageGroup)) {
+            System.out.println("Your age group input is wrong,please input again");
+            ageGroup = sc.next();
+        }
+        vs.setAgeGroup(ageGroup);
+        try {
+            vs.setRespiratoryRate(sc.nextInt());
+            vs.setHeartRate(sc.nextInt());
+            vs.setSystolicBloodPressure(sc.nextInt());
+            vs.setWeightInKilos(sc.nextDouble());
+        } catch (Exception e) {
+            System.out.println("Your vital sign input should be a number");
+        }
 //        System.out.println("Weight in ponds equals weight in kilos by 2.2:");
 //        vs.setWeightInPounds(sc.nextDouble());
     }
 
-    private static void isNumberRight(int numberOf, Scanner sc) {
+    private static int isNumberRight(int numberOf, Scanner sc) {
         while(numberOf<0){
             System.out.println("Your input is wrong, input again: ");
             numberOf = sc.nextInt();
         }  
+        return  numberOf;
     }
     
     }

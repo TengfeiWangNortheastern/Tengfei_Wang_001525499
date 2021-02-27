@@ -16,7 +16,6 @@ public class Patient extends Person{
     private EncounterHistory encounterHistory=new EncounterHistory();
     
     public Patient() {
-        
     }
 
     public EncounterHistory getEncounterHistory() {
@@ -173,14 +172,6 @@ public class Patient extends Person{
 
         return true;
     }
-//    public boolean areTheVitalSignsAtTheTimeNormal(String vsign){
-//        // vsign is time of VitalSigns
-//        for(VitalSigns vs:history){
-//            if(vsign.equals(vs.getTime()))
-//                return this.isPatientNormal(vs);
-//        }
-//        return false;
-//    }
-
+    
     }
 

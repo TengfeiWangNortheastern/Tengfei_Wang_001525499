@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Community {
     private String addressCommnity;
     private String addressCity;
+    private String addressFull;
     private ArrayList<House> houseList=new ArrayList<House>();
 
     public Community() {
@@ -21,6 +22,14 @@ public class Community {
 
     public Community(String addressCity) {
         this.addressCity = addressCity;
+    }
+
+    public String getAddressFull() {
+        return addressCommnity+","+addressCity;
+    }
+
+    public void setAddressFull(String addressFull) {
+        this.addressFull = addressFull;
     }
 
     public String getAddressCommnity() {
