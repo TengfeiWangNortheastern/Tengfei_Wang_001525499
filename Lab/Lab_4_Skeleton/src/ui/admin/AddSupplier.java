@@ -189,7 +189,7 @@ public class AddSupplier extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSupplierActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:     
         Supplier supplier = supplierDirectory.addSupplier();
         supplier.setSupplyName(txtName.getText());
         supplier.setLogoImage(logoImage);

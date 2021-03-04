@@ -29,7 +29,7 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
         this.workArea = workArea;
         this.supplier = supplier;
        
-        if(supplier.getLogoImage()==null){
+        if(supplier.getLogoImage()!=null){
             imgLogo.setIcon(supplier.getLogoImage());
         }else{
             imgLogo.setText("No Logo");
@@ -42,7 +42,6 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
 
         DefaultTableModel model = (DefaultTableModel) tblProducts.getModel();
         model.setRowCount(0);
-
         for (Product p : supplier.getProductCatalog().getProductCatalog()) {
             Object row[] = new Object[3];
             row[0] = p;
@@ -163,7 +162,16 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
-        
+        int selectedRow=tblProducts.getSelectedRow();
+        Product product=(Product)tblProducts.getValueAt(selectedRow, 0);
+        if(product==null){
+            System.out.println("please select a product");
+            return;
+        }
+        ViewProductDetailJPanel vpdj=new ViewProductDetailJPanel(workArea, product);
+        workArea.add("View Product Detail",vpdj);
+        CardLayout cardLayout=(CardLayout)workArea.getLayout();
+        cardLayout.next(workArea);
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
@@ -176,6 +184,10 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         
+        SearchForProductJPanel sfpj=new SearchForProductJPanel(workArea, supplier);
+        workArea.add("View Product Detail",sfpj);
+        CardLayout cardLayout=(CardLayout)workArea.getLayout();
+        cardLayout.next(workArea);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
