@@ -96,5 +96,9 @@ public class Lab_5_Main {
         // TODO
         helper.getAverageLikesPerComments();
         helper.getMaxLikeCommentPost();
+        helper.getPostWithMostComments();
+        helper.getPassiveUsrs();
+        helper.getPassiveAndActiveOverallUsers();
+        
     }
 }
