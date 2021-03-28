@@ -5,6 +5,7 @@
 package userinterface.CustomerRole;
 
 import Business.EcoSystem;
+import Business.Organizations.CustomerOrganization;
 import Business.Organizations.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
@@ -12,6 +13,7 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -21,16 +23,16 @@ import javax.swing.JPanel;
 public class RequestLabTestJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
-    
+    EcoSystem ecosystem;
     private UserAccount userAccount;
     /**
      * Creates new form RequestLabTestJPanel
      */
-    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount account) {
+    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        
+        this.ecosystem=ecosystem;
         this.userAccount = account;
        
     }
@@ -82,9 +84,30 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
+        String message=messageJTextField.getText();
+        if(message.equals("")||message.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please enter something to send.");
+            return;
+        }
+        LabTestWorkRequest request = new LabTestWorkRequest();
+        request.setMessage(message);
+        request.setSender(userAccount);
+        request.setStatus("Sent");
         
-        
-        
+        Organization org = null;
+//        for (Organization organization : ecosystem.getOrganizationDirectory().getOrganizationList()) {
+//            if (organization instanceof CustomerOrganization) {
+//                org = organization;
+//                break;
+//            }
+//        }
+//        if (org != null) {
+//            org.getWorkQueue().getWorkRequestList().add(request);
+//            userAccount.getWorkQueue().getWorkRequestList().add(request);
+//        }
+
+        JOptionPane.showMessageDialog(null, "Request message sent");
+        messageJTextField.setText("");
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

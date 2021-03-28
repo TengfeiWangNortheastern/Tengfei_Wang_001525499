@@ -9,6 +9,8 @@ package Business;
 import Business.Organizations.Organization;
 import Business.Customer.CustomerDirectory;
 import Business.DeliveryMan.DeliveryManDirectory;
+import Business.Network.Network;
+import Business.Organizations.OrganizationDirectory;
 import Business.Restaurant.RestaurantDirectory;
 import Business.Role.Role;
 import Business.Role.SystemAdminRole;
@@ -24,9 +26,11 @@ public class EcoSystem extends Organization{
     private RestaurantDirectory restaurantDirectory;
     private CustomerDirectory customerDirectory;
     private DeliveryManDirectory deliveryManDirectory;
-
+    private OrganizationDirectory organizationDirectory;
+    private ArrayList<Network> networkList;
+    
     public EcoSystem(RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, DeliveryManDirectory deliveryManDirectory) {
-
+        
         this.restaurantDirectory = restaurantDirectory;
         this.customerDirectory = customerDirectory;
         this.deliveryManDirectory = deliveryManDirectory;
@@ -38,6 +42,19 @@ public class EcoSystem extends Organization{
         }
         return business;
     }
+    public Network createAndAddNetwork() {
+        Network network = new Network();
+        networkList.add(network);
+        return network;
+    }
+
+    public ArrayList<Network> getNetworkList() {
+        return networkList;
+    }
+
+    public void setNetworkList(ArrayList<Network> networkList) {
+        this.networkList = networkList;
+    }
     
     @Override
     public ArrayList<Role> getSupportedRole() {
@@ -47,12 +64,17 @@ public class EcoSystem extends Organization{
     }
     private EcoSystem(){
         super(null);
-       // networkList=new ArrayList<Network>();
+        networkList=new ArrayList<Network>();
     }
 
     
     public boolean checkIfUserIsUnique(String userName){
-       //
-       return false;
+        if (!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)) {
+            return false;
+        }
+        for (Network network : networkList) {
+
+        }
+        return true;
     }
 }

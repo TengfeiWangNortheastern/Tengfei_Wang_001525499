@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class RestaurantOrganization extends Organization{
 
-    RestaurantOrganization() {
+    public RestaurantOrganization() {
         super(Organization.Type.RestaurantAdmin.getValue());
     }
 

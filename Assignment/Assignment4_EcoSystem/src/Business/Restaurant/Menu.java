@@ -5,17 +5,11 @@
  */
 package Business.Restaurant;
 
-import java.util.ArrayList;
-
 /**
  *
- * @author harold
+ * @author 主子
  */
-public class RestaurantDirectory {
-    ArrayList<Restaurant> restaurantList=new ArrayList<>();
-
-    public RestaurantDirectory() {
-        restaurantList = new ArrayList<>();    
-    }
+public class Menu {
+    //product catalog
     
 }

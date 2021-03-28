@@ -35,8 +35,20 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         populateRequestTable();
     }
     
-    public void populateRequestTable(){
-        
+    public void populateRequestTable() {
+        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
+
+        model.setRowCount(0);
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
+            Object[] row = new Object[4];
+            row[0] = request.getMessage();
+            row[1] = request.getReceiver();
+            row[2] = request.getStatus();
+            String result = ((LabTestWorkRequest) request).getTestResult();
+            row[3] = result == null ? "Waiting" : result;
+
+            model.addRow(row);
+        }
     }
 
     
@@ -161,7 +173,10 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
-        
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("RequestLabTestJPanel", new RequestLabTestJPanel(userProcessContainer, userAccount,ecosystem));
+        layout.next(userProcessContainer);
+ 
         
         
     }//GEN-LAST:event_requestTestJButtonActionPerformed
