@@ -138,7 +138,7 @@ public class MainJFrame extends javax.swing.JFrame {
         else{
             CardLayout layout=(CardLayout)container.getLayout();
             container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, system));
-            layout.next(container);
+            layout.next(container); 
         }
         
         loginJButton.setEnabled(false);

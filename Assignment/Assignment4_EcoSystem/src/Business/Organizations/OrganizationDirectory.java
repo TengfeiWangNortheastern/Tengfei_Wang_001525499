@@ -34,6 +34,14 @@ public class OrganizationDirectory {
             organization = new RestaurantOrganization();
             organizationList.add(organization);
         }
+        else if (type.getValue().equals(Type.DeliveryMan.getValue())) {
+            organization = new DeliveryManOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.Customer.getValue())) {
+            organization = new CustomerOrganization();
+            organizationList.add(organization);
+        }
         return organization;
     }
 }
