@@ -21,8 +21,8 @@ public abstract class Role {
         RestaurantAdmin("RestaurantAdmin"),
         Customer("Customer"),
         DeliveryMan("Delivery"),
-        SysAdmin("Sysadmin");
-        
+        SysAdmin("Sysadmin"),
+        SuperAdmin("Superadmin");
         private String value;
         private RoleType(String value){
             this.value = value;

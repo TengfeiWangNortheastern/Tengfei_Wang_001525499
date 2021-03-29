@@ -27,8 +27,8 @@ public abstract class Organization {
         RestaurantAdmin("RestaurantAdmin"),
         Customer("Customer"),
         DeliveryMan("Delivery"),
-        SysAdmin("Sysadmin");
-        
+        SysAdmin("Sysadmin"),
+        SuperAdmin("Superadmin");
         private String value;
         private Type(String value) {
             this.value = value;

@@ -26,7 +26,11 @@ public class OrganizationDirectory {
     
     public Organization createOrganization(Type type){
         Organization organization = null;
-        if (type.getValue().equals(Type.SysAdmin.getValue())){
+        if (type.getValue().equals(Type.SuperAdmin.getValue())){
+            organization = new SuperAdminOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.SysAdmin.getValue())){
             organization = new SystemAdminOrganization();
             organizationList.add(organization);
         }

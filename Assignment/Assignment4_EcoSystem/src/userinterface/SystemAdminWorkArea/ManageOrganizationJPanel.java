@@ -4,9 +4,9 @@
  */
 package userinterface.SystemAdminWorkArea;
 
-import business.Organizations.Organization;
-import business.Organizations.Organization.Type;
-import business.Organizations.OrganizationDirectory;
+import Business.Organizations.Organization;
+import Business.Organizations.Organization.Type;
+import Business.Organizations.OrganizationDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -35,7 +35,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private void populateCombo(){
         cmbOrganizations.removeAllItems();
         for (Type type : Organization.Type.values()){
-            if (!type.getValue().equals(Type.Admin.getValue()))
+            if (!type.getValue().equals(Type.SysAdmin.getValue()))
                 cmbOrganizations.addItem(type);
         }
     }

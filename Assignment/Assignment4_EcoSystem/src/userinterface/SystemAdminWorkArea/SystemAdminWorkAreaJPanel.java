@@ -155,10 +155,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageAllCustomersPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageAllCustomersPerformed
-//        CustomerAreaJPanel customerAreaJPanel=new CustomerAreaJPanel(userProcessContainer,account ,ecosystem);
-//        userProcessContainer.add("customerAreaJPanel",customerAreaJPanel);
-//        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+        CustomerAreaJPanel customerAreaJPanel=new CustomerAreaJPanel(userProcessContainer,account ,ecosystem);
+        userProcessContainer.add("customerAreaJPanel",customerAreaJPanel);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageAllCustomersPerformed
 
     private void btnManageRestaurantsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageRestaurantsActionPerformed

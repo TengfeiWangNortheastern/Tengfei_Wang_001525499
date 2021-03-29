@@ -142,7 +142,7 @@ public class MainJFrame extends javax.swing.JFrame {
 //            container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, system));
 //            layout.next(container); 
 //        }
-//        
+        
 //        loginJButton.setEnabled(false);
 //        logoutJButton.setEnabled(true);
 //        userNameJTextField.setEnabled(false);
