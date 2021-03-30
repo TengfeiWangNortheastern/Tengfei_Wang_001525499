@@ -25,7 +25,7 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     private EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-
+    
     public MainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();

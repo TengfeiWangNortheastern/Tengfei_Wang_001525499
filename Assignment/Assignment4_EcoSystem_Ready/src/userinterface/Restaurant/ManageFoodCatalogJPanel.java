@@ -1,12 +1,15 @@
 package userinterface.Restaurant;
 
 import Business.Order.Food;
+import Business.Order.FoodCatalog;
 import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import jdk.nashorn.internal.ir.BreakNode;
 
 /**
  *
@@ -19,6 +22,7 @@ public class ManageFoodCatalogJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private UserAccount supplier;
+    private FoodCatalog foodCatalog;
     public ManageFoodCatalogJPanel(JPanel upc,UserAccount s ) {
         initComponents();
         userProcessContainer = upc;
@@ -31,9 +35,15 @@ public class ManageFoodCatalogJPanel extends javax.swing.JPanel {
 
         DefaultTableModel model = (DefaultTableModel) tblProductCatalog.getModel();
         model.setRowCount(0);
-        
-        
-        for (Food p : supplier.getWorkQueue().getFoodCatalog().getProductcatalog()) {
+        System.out.println(supplier.getWorkQueue());
+        if(supplier.getWorkQueue().getFoodCatalog()==null){
+            foodCatalog=new FoodCatalog();
+//            foodCatalog.addProduct();
+            supplier.getWorkQueue().setFoodCatalog(foodCatalog);
+            return;
+        }
+        List<Food> productcatalog = supplier.getWorkQueue().getFoodCatalog().getProductcatalog();
+        for (Food p : productcatalog) {
             Object row[] = new Object[4];
             row[0] = p;
             row[1] = p.getModelNumber();
@@ -50,9 +60,7 @@ public class ManageFoodCatalogJPanel extends javax.swing.JPanel {
         lblSupplier = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProductCatalog = new javax.swing.JTable();
-        btnView = new javax.swing.JButton();
         btnCreate = new javax.swing.JButton();
-        btnSearch = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
 
@@ -77,24 +85,10 @@ public class ManageFoodCatalogJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblProductCatalog);
 
-        btnView.setText("View Details...");
-        btnView.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewActionPerformed(evt);
-            }
-        });
-
         btnCreate.setText("New Product...");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateActionPerformed(evt);
-            }
-        });
-
-        btnSearch.setText("Search...");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
             }
         });
 
@@ -121,11 +115,7 @@ public class ManageFoodCatalogJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCreate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(33, 33, 33)
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -133,7 +123,7 @@ public class ManageFoodCatalogJPanel extends javax.swing.JPanel {
                         .addGap(98, 98, 98)
                         .addComponent(lblTitle))
                     .addComponent(lblSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39))
+                .addGap(53, 53, 53))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,42 +139,17 @@ public class ManageFoodCatalogJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreate)
-                    .addComponent(btnView)
-                    .addComponent(btnSearch)
                     .addComponent(btnDelete))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-
-//        int selectedRowIndex = tblProductCatalog.getSelectedRow();
-//        if (selectedRowIndex < 0) {
-//            JOptionPane.showMessageDialog(null, "Pls select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
-//        }
-//        
-//        Product p = (Product) tblProductCatalog.getValueAt(selectedRowIndex, 0);
-//        
-//        ViewProductDetailJPanel vpdjp = new ViewProductDetailJPanel(userProcessContainer, p);
-//        userProcessContainer.add("ViewProductDetailJPanel", vpdjp);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-//
-//        CreateNewProductJPanel cnpjp = new CreateNewProductJPanel(userProcessContainer, supplier);
-//        userProcessContainer.add("CreateNewProductJPanel", cnpjp);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+        CreateNewProductJPanel cnpjp = new CreateNewProductJPanel(userProcessContainer, supplier,foodCatalog);
+        userProcessContainer.add("CreateNewProductJPanel", cnpjp);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnCreateActionPerformed
-
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-//
-//        SearchForProductJPanel sfpjp = new SearchForProductJPanel(userProcessContainer, supplier);
-//        userProcessContainer.add("SearchForProductJPanel", sfpjp);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
@@ -195,22 +160,20 @@ public class ManageFoodCatalogJPanel extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
 
-//        int selectedRowIndex = tblProductCatalog.getSelectedRow();
-//
-//        if (selectedRowIndex < 0) {
-//            JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
-//            return;
-//        }
-//        Product s = (Product) tblProductCatalog.getValueAt(selectedRowIndex, 0);
-//        supplier.getProductCatalog().removeProduct(s);
-//        refreshTable();
+        int selectedRowIndex = tblProductCatalog.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Food s = (Food) tblProductCatalog.getValueAt(selectedRowIndex, 0);
+        supplier.getWorkQueue().getFoodCatalog().removeProduct(s);
+        refreshTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnView;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblSupplier;
     private javax.swing.JLabel lblTitle;

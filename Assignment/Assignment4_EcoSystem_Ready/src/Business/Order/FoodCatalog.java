@@ -21,6 +21,9 @@ public class FoodCatalog {
     }
 
     public List<Food> getProductcatalog() {
+        if (productCatalog==null) {
+            productCatalog=new ArrayList<>();
+        }
         return productCatalog;
     }
 
