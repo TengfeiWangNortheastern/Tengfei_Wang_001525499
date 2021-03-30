@@ -5,6 +5,8 @@
 package userinterface.DeliveryManRole;
 
 import Business.EcoSystem;
+import Business.Organization.DeliveryManOrganization;
+import Business.Organization.Organization;
 
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
@@ -22,24 +24,36 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
-    
+    private DeliveryManOrganization deliveryManOrganization;
     
     /**
      * Creates new form LabAssistantWorkAreaJPanel
      */
-    public DeliveryManWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+    public DeliveryManWorkAreaJPanel(JPanel userProcessContainer, UserAccount account,Organization organization ,EcoSystem business) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
-      
+        this.deliveryManOrganization=(DeliveryManOrganization)organization;
         
         populateTable();
     }
     
     public void populateTable(){
-        
+        DefaultTableModel model = (DefaultTableModel) tblWorkRequests.getModel();
+
+        model.setRowCount(0);
+
+        for (WorkRequest request : deliveryManOrganization.getWorkQueue().getWorkRequestList()) {
+            Object[] row = new Object[4];
+            row[0] = request;
+            row[1] = request.getSender().getEmployee().getName();
+            row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
+            row[3] = request.getStatus();
+
+            model.addRow(row);
+        }
     }
 
     /**
@@ -52,7 +66,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        workRequestJTable = new javax.swing.JTable();
+        tblWorkRequests = new javax.swing.JTable();
         assignJButton = new javax.swing.JButton();
         processJButton = new javax.swing.JButton();
         refreshJButton = new javax.swing.JButton();
@@ -60,7 +74,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
+        tblWorkRequests.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -86,12 +100,12 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(workRequestJTable);
-        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
-            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(tblWorkRequests);
+        if (tblWorkRequests.getColumnModel().getColumnCount() > 0) {
+            tblWorkRequests.getColumnModel().getColumn(0).setResizable(false);
+            tblWorkRequests.getColumnModel().getColumn(1).setResizable(false);
+            tblWorkRequests.getColumnModel().getColumn(2).setResizable(false);
+            tblWorkRequests.getColumnModel().getColumn(3).setResizable(false);
         }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 58, 375, 96));
@@ -131,13 +145,13 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
 
-        int selectedRow = workRequestJTable.getSelectedRow();
+        int selectedRow = tblWorkRequests.getSelectedRow();
         
         if (selectedRow < 0){
             return;
         }
         
-        WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+        WorkRequest request = (WorkRequest)tblWorkRequests.getValueAt(selectedRow, 0);
         request.setReceiver(userAccount);
         request.setStatus("Pending");
         populateTable();
@@ -146,13 +160,13 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
         
-        int selectedRow = workRequestJTable.getSelectedRow();
+        int selectedRow = tblWorkRequests.getSelectedRow();
         
         if (selectedRow < 0){
             return;
         }
         
-        LabTestWorkRequest request = (LabTestWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+        LabTestWorkRequest request = (LabTestWorkRequest)tblWorkRequests.getValueAt(selectedRow, 0);
      
         request.setStatus("Processing");
         
@@ -180,6 +194,6 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton processJButton;
     private javax.swing.JButton refreshJButton;
-    private javax.swing.JTable workRequestJTable;
+    private javax.swing.JTable tblWorkRequests;
     // End of variables declaration//GEN-END:variables
 }

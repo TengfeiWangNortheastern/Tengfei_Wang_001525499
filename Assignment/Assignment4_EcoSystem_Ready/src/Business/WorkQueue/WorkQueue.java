@@ -4,6 +4,7 @@
  */
 package Business.WorkQueue;
 
+import Business.Order.FoodCatalog;
 import java.util.ArrayList;
 
 /**
@@ -13,12 +14,23 @@ import java.util.ArrayList;
 public class WorkQueue {
     
     private ArrayList<WorkRequest> workRequestList;
-
+    private FoodCatalog foodCatalog;
+    
     public WorkQueue() {
         workRequestList = new ArrayList();
+        foodCatalog=new FoodCatalog();
     }
 
     public ArrayList<WorkRequest> getWorkRequestList() {
         return workRequestList;
     }
+
+    public FoodCatalog getFoodCatalog() {
+        return foodCatalog;
+    }
+
+    public void setFoodCatalog(FoodCatalog foodCatalog) {
+        this.foodCatalog = foodCatalog;
+    }
+    
 }

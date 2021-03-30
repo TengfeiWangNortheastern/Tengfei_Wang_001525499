@@ -43,7 +43,11 @@ public class Food {
         count++;
         modelNumber = count;
     }
-
+    public Food(String name) {
+        count++;
+        modelNumber = count;
+        this.prodName=name;
+    }
     public String getProdName() {
         return prodName;
     }

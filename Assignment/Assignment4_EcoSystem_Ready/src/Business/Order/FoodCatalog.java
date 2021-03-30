@@ -29,7 +29,11 @@ public class FoodCatalog {
         productCatalog.add(p);
         return p;
     }
-
+    public Food addProduct(String name) {
+        Food p = new Food(name);
+        productCatalog.add(p);
+        return p;
+    }
     public void removeProduct(Food p) {
         productCatalog.remove(p);
     }

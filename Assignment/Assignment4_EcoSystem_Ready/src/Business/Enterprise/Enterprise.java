@@ -16,13 +16,13 @@ public abstract class Enterprise extends Organization{
     
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
-
+    
     public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;
     }
     
     public enum EnterpriseType{
-        Hospital("Restaurant");
+        Restaurant("Restaurant");
         private String value;
         
         private EnterpriseType(String value){

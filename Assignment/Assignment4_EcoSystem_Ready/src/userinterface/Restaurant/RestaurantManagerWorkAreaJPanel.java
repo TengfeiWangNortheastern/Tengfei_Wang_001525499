@@ -23,7 +23,7 @@ public class RestaurantManagerWorkAreaJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.account=account;
         this.ecosystem=ecosystem;
-        //valueLabel.setText();
+        valueLabel.setText(account.getUsername());
     }
     
     /** This method is called from within the constructor to
@@ -94,11 +94,14 @@ public class RestaurantManagerWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_ManageRestaurantJButtonActionPerformed
 
     private void manageMenuJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageMenuJButtonActionPerformed
-
+        ManageFoodCatalogJPanel bpjp = new ManageFoodCatalogJPanel(userProcessContainer,account);
+        userProcessContainer.add("ManageFoodCatalogJPanel", bpjp);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_manageMenuJButtonActionPerformed
 
     private void manageOrdersJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrdersJButtonActionPerformed
-
+        
     }//GEN-LAST:event_manageOrdersJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

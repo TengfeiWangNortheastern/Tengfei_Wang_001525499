@@ -4,6 +4,7 @@
  */
 package Business.WorkQueue;
 
+import Business.Order.MasterOrderList;
 import Business.UserAccount.UserAccount;
 import java.util.Date;
 
@@ -19,9 +20,18 @@ public abstract class WorkRequest {
     private String status;
     private Date requestDate;
     private Date resolveDate;
+    private MasterOrderList masterOrderList=new MasterOrderList();
     
     public WorkRequest(){
         requestDate = new Date();
+    }
+
+    public MasterOrderList getMasterOrderList() {
+        return masterOrderList;
+    }
+
+    public void setMasterOrderList(MasterOrderList masterOrderList) {
+        this.masterOrderList = masterOrderList;
     }
 
     public String getMessage() {

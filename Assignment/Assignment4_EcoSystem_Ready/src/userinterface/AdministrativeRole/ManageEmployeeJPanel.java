@@ -8,6 +8,7 @@ import Business.Employee.Employee;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -79,6 +80,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         nameJTextField = new javax.swing.JTextField();
         organizationEmpJComboBox = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
+        btnDeleteEmployee = new javax.swing.JButton();
 
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,6 +143,13 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Organization");
 
+        btnDeleteEmployee.setText("Delete Employee");
+        btnDeleteEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteEmployeeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,7 +159,9 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 .addComponent(backJButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addJButton)
-                .addGap(175, 175, 175))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDeleteEmployee)
+                .addGap(46, 46, 46))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -192,7 +203,8 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addJButton)
-                    .addComponent(backJButton))
+                    .addComponent(backJButton)
+                    .addComponent(btnDeleteEmployee))
                 .addGap(48, 48, 48))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -221,9 +233,30 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_organizationJComboBoxActionPerformed
 
+    private void btnDeleteEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEmployeeActionPerformed
+
+        int selectedRow=organizationJTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(this, "Please select a row.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int selectedId=(int)organizationJTable.getValueAt(selectedRow, 0);
+        
+        Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
+        
+        for(Employee employee:organization.getEmployeeDirectory().getEmployeeList()){
+            if (selectedId==employee.getId()) {
+                organization.getEmployeeDirectory().deleteEmployee(selectedId);
+            }
+        }
+        populateTable(organization);
+
+    }//GEN-LAST:event_btnDeleteEmployeeActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;
     private javax.swing.JButton backJButton;
+    private javax.swing.JButton btnDeleteEmployee;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
