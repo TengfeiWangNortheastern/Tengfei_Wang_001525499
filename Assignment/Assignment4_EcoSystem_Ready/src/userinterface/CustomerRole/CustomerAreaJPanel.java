@@ -5,6 +5,7 @@
 package userinterface.CustomerRole;
 
 import Business.EcoSystem;
+import Business.Organization.Organization;
 
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
@@ -22,15 +23,17 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     EcoSystem ecosystem;
     private UserAccount userAccount;
+    private Organization organization;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
-    public CustomerAreaJPanel(JPanel userProcessContainer, UserAccount account,EcoSystem ecosystem) {
+    public CustomerAreaJPanel(JPanel userProcessContainer, UserAccount account,EcoSystem ecosystem,Organization organization) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
         this.ecosystem=ecosystem;
         this.userAccount = account;
+        this.organization=organization;
         //valueLabel.setText(enterprise.getName());
         populateRequestTable();
     }
@@ -174,7 +177,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("RequestLabTestJPanel", new RequestLabTestJPanel(userProcessContainer, userAccount,ecosystem));
+        userProcessContainer.add("RequestLabTestJPanel", new RequestFoodTestJPanel(userProcessContainer, userAccount,ecosystem));
         layout.next(userProcessContainer);
  
         

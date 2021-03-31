@@ -36,24 +36,27 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         this.business = business;
         this.deliveryManOrganization=(DeliveryManOrganization)organization;
-        
         populateTable();
+        System.out.println("Deliverman"+organization.getWorkQueue().getWorkRequestList().size());
     }
     
     public void populateTable(){
         DefaultTableModel model = (DefaultTableModel) tblWorkRequests.getModel();
 
         model.setRowCount(0);
-
+        System.out.println(deliveryManOrganization.getWorkQueue().getWorkRequestList().size());
         for (WorkRequest request : deliveryManOrganization.getWorkQueue().getWorkRequestList()) {
-            Object[] row = new Object[4];
+            Object[] row = new Object[5];
             row[0] = request;
             row[1] = request.getSender().getEmployee().getName();
             row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
-            row[3] = request.getStatus();
-
+            row[3]="3";
+            row[4] = request.getStatus();
+            
+            System.out.println("Table polulated");
             model.addRow(row);
         }
+        System.out.println("Table polulated out");
     }
 
     /**
@@ -70,26 +73,25 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         assignJButton = new javax.swing.JButton();
         processJButton = new javax.swing.JButton();
         refreshJButton = new javax.swing.JButton();
-        backJButton = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblWorkRequests.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Message", "Sender", "Receiver", "Status"
+                "Message", "Restaurant", "DeliveryMan", "Customer", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, false
+                false, true, true, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -104,11 +106,11 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         if (tblWorkRequests.getColumnModel().getColumnCount() > 0) {
             tblWorkRequests.getColumnModel().getColumn(0).setResizable(false);
             tblWorkRequests.getColumnModel().getColumn(1).setResizable(false);
-            tblWorkRequests.getColumnModel().getColumn(2).setResizable(false);
             tblWorkRequests.getColumnModel().getColumn(3).setResizable(false);
+            tblWorkRequests.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 58, 375, 96));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 58, 420, 96));
 
         assignJButton.setText("Assign to me");
         assignJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -133,14 +135,6 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 26, -1, -1));
-
-        backJButton.setText("<< Back");
-        backJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backJButtonActionPerformed(evt);
-            }
-        });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
@@ -181,16 +175,8 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         populateTable();
     }//GEN-LAST:event_refreshJButtonActionPerformed
 
-    private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_backJButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignJButton;
-    private javax.swing.JButton backJButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton processJButton;
     private javax.swing.JButton refreshJButton;

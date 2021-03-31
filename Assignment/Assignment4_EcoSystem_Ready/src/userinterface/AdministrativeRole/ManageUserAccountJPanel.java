@@ -4,9 +4,15 @@
  */
 package userinterface.AdministrativeRole;
 
+import Business.Customer.Customer;
+import Business.Customer.CustomerDirectory;
+import Business.DeliveryMan.DeliveryMan;
+import Business.DeliveryMan.DeliveryManDirectory;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
+import Business.Restaurant.Restaurant;
+import Business.Restaurant.RestaurantDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -24,12 +30,17 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
      */
     private JPanel container;
     private Enterprise enterprise;
-
+    private Restaurant restaurant;
+    private RestaurantDirectory restaurantDirectory;
+    private DeliveryMan deliveryMan;
+    private DeliveryManDirectory deliveryManDirectory;
+    private Customer customer;
+    private CustomerDirectory customerDirectory;
     public ManageUserAccountJPanel(JPanel container, Enterprise enterprise) {
         initComponents();
         this.enterprise = enterprise;
         this.container = container;
-
+        
         popOrganizationComboBox();
        // employeeJComboBox.removeAllItems();
         popData();
@@ -168,6 +179,11 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         jLabel4.setText("Role");
 
         roleJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        roleJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roleJComboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -258,16 +274,37 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         
         organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
         
+        
         popData();
     }//GEN-LAST:event_createUserJButtonActionPerformed
 
     private void backjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton1ActionPerformed
-        // TODO add your handling code here:
+        // save all the information in directory
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
+                System.out.println(ua.getRole().toString());
+                if (ua.getRole().toString().equals("Business.Role.RestaurantManagerRole")) {
+                    if (enterprise.getRestaurantDirectory()==null) {
+                        enterprise.setRestaurantDirectory(new RestaurantDirectory());
+                    }
+                    //check duplicate
+                    if(enterprise.getRestaurantDirectory().checkIfRestaurantNameIsUnique(ua.getUsername())){
+                        Restaurant restaurant=enterprise.getRestaurantDirectory().addNewRestaurant(ua);
+                    }
+                }
+                //save in customer directory
+      
+            
+        }
+        for(Restaurant r:enterprise.getRestaurantDirectory().getRestaurantList()){
+            System.out.println(r.getRestaurantName());
+        }
+        
         container.remove(this);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.previous(container);
     }//GEN-LAST:event_backjButton1ActionPerformed
-
+    }
     private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
         Organization organization = (Organization) organizationJComboBox.getSelectedItem();
         if (organization != null){
@@ -279,6 +316,10 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     private void nameJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameJTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nameJTextFieldActionPerformed
+
+    private void roleJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roleJComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backjButton1;

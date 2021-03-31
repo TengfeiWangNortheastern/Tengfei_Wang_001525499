@@ -2,25 +2,28 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.DoctorRole;
+package userinterface.Restaurant;
+
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Organization.LabOrganization;
+import Business.Organization.DeliveryManOrganization;
 import Business.Organization.Organization;
+import Business.Organization.RestaurantOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
  * @author raunak
  */
-public class RequestLabTestJPanel extends javax.swing.JPanel {
+public class RequestDeliveringJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private Enterprise enterprise;
@@ -28,13 +31,13 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RequestLabTestJPanel
      */
-    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise) {
+    public RequestDeliveringJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.userAccount = account;
-        valueLabel.setText(enterprise.getName());
+//        valueLabel.setText(enterprise.getName());
     }
 
     /**
@@ -73,7 +76,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 138, -1, -1));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         valueLabel.setText("<value>");
         add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 130, -1));
@@ -86,15 +89,19 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
         
         String message = messageJTextField.getText();
-        
+        if(message.equals("") || message.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please enter something to send.");
+            return;
+        }
         LabTestWorkRequest request = new LabTestWorkRequest();
         request.setMessage(message);
         request.setSender(userAccount);
         request.setStatus("Sent");
         
         Organization org = null;
+        System.out.println(enterprise.getOrganizationDirectory());
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof LabOrganization){
+            if (organization instanceof DeliveryManOrganization){
                 org = organization;
                 break;
             }
@@ -102,8 +109,9 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         if (org!=null){
             org.getWorkQueue().getWorkRequestList().add(request);
             userAccount.getWorkQueue().getWorkRequestList().add(request);
+            JOptionPane.showMessageDialog(this, "Added an deliver request successfully!");
         }
-        
+        System.out.println("RD"+org.getWorkQueue().getWorkRequestList().size());
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -111,7 +119,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
+        ManageOrderJPanel dwjp = (ManageOrderJPanel) component;
         dwjp.populateRequestTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);

@@ -6,6 +6,8 @@
 package Business.Restaurant;
 
 import Business.Order.FoodCatalog;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkQueue;
 
 /**
  *
@@ -14,10 +16,22 @@ import Business.Order.FoodCatalog;
 public class Restaurant {
     private String restaurantName;
     private FoodCatalog foodCatalog;
-
-    public Restaurant() {
+    private UserAccount userAccount;
+    
+    public Restaurant(UserAccount ua) {
+        this.userAccount=userAccount;
+        foodCatalog=new FoodCatalog();
+        
+    }
+    
+    public UserAccount getUserAccount() {
+        return userAccount;
     }
 
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
+    
     public String getRestaurantName() {
         return restaurantName;
     }

@@ -5,6 +5,7 @@
  */
 package Business.Restaurant;
 
+import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +14,6 @@ import java.util.ArrayList;
  */
 public class RestaurantDirectory {
     ArrayList<Restaurant> restaurantList;
-
     public RestaurantDirectory() {
         restaurantList = new ArrayList<>();    
     }
@@ -25,12 +25,20 @@ public class RestaurantDirectory {
     public void setRestaurantList(ArrayList<Restaurant> restaurantList) {
         this.restaurantList = restaurantList;
     }
-    public Restaurant addNewRestaurant(){
-        Restaurant restaurant=new Restaurant();
+    public Restaurant addNewRestaurant(UserAccount ua){
+        Restaurant restaurant=new Restaurant(ua);
         restaurantList.add(restaurant);
+        restaurant.setRestaurantName(ua.getUsername());
         return restaurant;
     }
     public void removeRestaurant(Restaurant restaurant){
         restaurantList.remove(restaurant);
+    }
+        public boolean checkIfRestaurantNameIsUnique(String username){
+        for (Restaurant res : restaurantList){
+            if (username.equals(res.getUserAccount().getUsername()))
+                return false;
+        }
+        return true;
     }
 }

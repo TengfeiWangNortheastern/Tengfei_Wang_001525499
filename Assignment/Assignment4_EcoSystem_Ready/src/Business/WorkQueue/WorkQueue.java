@@ -24,7 +24,7 @@ public class WorkQueue {
     public ArrayList<WorkRequest> getWorkRequestList() {
         return workRequestList;
     }
-
+    
     public FoodCatalog getFoodCatalog() {
         return foodCatalog;
     }
@@ -33,4 +33,11 @@ public class WorkQueue {
         this.foodCatalog = foodCatalog;
     }
     
+
+    public void setWorkRequestList(ArrayList<WorkRequest> workRequestList) {
+        this.workRequestList = workRequestList;
+    }
+    public void removeWorkRequest(WorkRequest workRequest){
+        workRequestList.remove(workRequest);
+    }
 }

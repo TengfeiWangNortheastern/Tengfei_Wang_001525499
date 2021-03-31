@@ -17,6 +17,7 @@ public abstract class WorkRequest {
     private String message;
     private UserAccount sender;
     private UserAccount receiver;
+    private UserAccount deliver;
     private String status;
     private Date requestDate;
     private Date resolveDate;
@@ -50,6 +51,14 @@ public abstract class WorkRequest {
         this.sender = sender;
     }
 
+    public UserAccount getDeliver() {
+        return deliver;
+    }
+
+    public void setDeliver(UserAccount deliver) {
+        this.deliver = deliver;
+    }
+
     public UserAccount getReceiver() {
         return receiver;
     }
@@ -81,4 +90,10 @@ public abstract class WorkRequest {
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
     }
+
+    @Override
+    public String toString() {
+        return message;
+    }
+    
 }

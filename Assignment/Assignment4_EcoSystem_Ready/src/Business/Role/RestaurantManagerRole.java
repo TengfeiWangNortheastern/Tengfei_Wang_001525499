@@ -22,7 +22,7 @@ import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 public class RestaurantManagerRole extends Role{
 
       public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system) {
-        return new RestaurantManagerWorkAreaJPanel(userProcessContainer,account ,system);
+        return new RestaurantManagerWorkAreaJPanel(userProcessContainer,account,organization,enterprise,system);
     }
 //    
 //    private FoodCatalog foodCatalog;

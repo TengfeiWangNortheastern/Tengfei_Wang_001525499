@@ -38,7 +38,6 @@ public class ManageFoodCatalogJPanel extends javax.swing.JPanel {
         System.out.println(supplier.getWorkQueue());
         if(supplier.getWorkQueue().getFoodCatalog()==null){
             foodCatalog=new FoodCatalog();
-//            foodCatalog.addProduct();
             supplier.getWorkQueue().setFoodCatalog(foodCatalog);
             return;
         }

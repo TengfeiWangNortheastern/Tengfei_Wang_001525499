@@ -151,7 +151,7 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Please check the price and quantity formats", "Info", JOptionPane.INFORMATION_MESSAGE);
             return;
-        }  
+        }
         Food p = foodCatalog.addProduct();
         p.setProdName(txtName.getText());
         p.setPrice(price);

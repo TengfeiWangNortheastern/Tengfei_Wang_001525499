@@ -20,7 +20,7 @@ import javax.swing.JPanel;
  *
  * @author raunak
  */
-public class RequestLabTestJPanel extends javax.swing.JPanel {
+public class RequestFoodTestJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     EcoSystem ecosystem;
@@ -28,7 +28,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RequestLabTestJPanel
      */
-    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem) {
+    public RequestFoodTestJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
