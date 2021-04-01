@@ -24,7 +24,7 @@ public abstract class Organization {
     private static int counter=0;
     
     public enum Type{
-        Admin("Admin Organization"), Doctor("Doctor Organization"), Lab("Lab Organization"),
+        Admin("Admin Organization"),
         RestaurantAdmin("RestaurantAdmin"),
         Customer("Customer"),
         DeliveryMan("DeliveryMan"),

@@ -94,7 +94,7 @@ public class RequestDeliveringJPanel extends javax.swing.JPanel {
             return;
         }
         LabTestWorkRequest request = new LabTestWorkRequest();
-        request.setMessage(message);
+        request.setMessage(message);  
         request.setSender(userAccount);
         request.setStatus("Sent");
         

@@ -5,6 +5,8 @@
 package Business.WorkQueue;
 
 import Business.Order.FoodCatalog;
+import Business.Order.MasterOrderList;
+import Business.Order.Order;
 import java.util.ArrayList;
 
 /**
@@ -15,10 +17,19 @@ public class WorkQueue {
     
     private ArrayList<WorkRequest> workRequestList;
     private FoodCatalog foodCatalog;
-    
+    private MasterOrderList masterOrderList;
+
+    public MasterOrderList getMasterOrderList() {
+        return masterOrderList;
+    }
+
+    public void setMasterOrderList(MasterOrderList masterOrderList) {
+        this.masterOrderList = masterOrderList;
+    }
     public WorkQueue() {
         workRequestList = new ArrayList();
         foodCatalog=new FoodCatalog();
+        masterOrderList=new MasterOrderList();
     }
 
     public ArrayList<WorkRequest> getWorkRequestList() {

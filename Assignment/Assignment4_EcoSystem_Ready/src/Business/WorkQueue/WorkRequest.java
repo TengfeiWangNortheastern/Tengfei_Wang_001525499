@@ -5,6 +5,7 @@
 package Business.WorkQueue;
 
 import Business.Order.MasterOrderList;
+import Business.Order.Order;
 import Business.UserAccount.UserAccount;
 import java.util.Date;
 
@@ -15,24 +16,41 @@ import java.util.Date;
 public abstract class WorkRequest {
 
     private String message;
-    private UserAccount sender;
-    private UserAccount receiver;
-    private UserAccount deliver;
+    private UserAccount sender; //current res, future customer
+    private UserAccount receiver;// current deliv, future deliv
+    private UserAccount deliver;//current deliv, future res
     private String status;
     private Date requestDate;
     private Date resolveDate;
-    private MasterOrderList masterOrderList=new MasterOrderList();
-    
+    private String feedbackOfRestaurantFromCustomer;
+    private String feedbackOfDeliveryManFromCustomer;
+    private Order order;
     public WorkRequest(){
         requestDate = new Date();
     }
 
-    public MasterOrderList getMasterOrderList() {
-        return masterOrderList;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setMasterOrderList(MasterOrderList masterOrderList) {
-        this.masterOrderList = masterOrderList;
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public String getFeedbackOfRestaurantFromCustomer() {
+        return feedbackOfRestaurantFromCustomer;
+    }
+
+    public void setFeedbackOfRestaurantFromCustomer(String feedbackOfRestaurantFromCustomer) {
+        this.feedbackOfRestaurantFromCustomer = feedbackOfRestaurantFromCustomer;
+    }
+
+    public String getFeedbackOfDeliveryManFromCustomer() {
+        return feedbackOfDeliveryManFromCustomer;
+    }
+
+    public void setFeedbackOfDeliveryManFromCustomer(String feedbackOfDeliveryManFromCustomer) {
+        this.feedbackOfDeliveryManFromCustomer = feedbackOfDeliveryManFromCustomer;
     }
 
     public String getMessage() {
@@ -93,7 +111,7 @@ public abstract class WorkRequest {
 
     @Override
     public String toString() {
-        return message;
+        return status;
     }
     
 }

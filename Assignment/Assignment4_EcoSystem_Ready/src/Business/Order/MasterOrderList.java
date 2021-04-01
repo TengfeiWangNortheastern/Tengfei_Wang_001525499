@@ -29,4 +29,7 @@ public class MasterOrderList {
     public void addNewOrder(Order order){
         this.orderList.add(order);
     }
+    public void removeOrder(Order order){
+        this.orderList.remove(order);
+    }
 }

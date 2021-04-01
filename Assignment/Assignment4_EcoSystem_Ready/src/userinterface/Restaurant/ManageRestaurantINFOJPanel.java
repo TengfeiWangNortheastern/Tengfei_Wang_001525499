@@ -5,6 +5,11 @@
  */
 package userinterface.Restaurant;
 
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author NURES
@@ -14,7 +19,12 @@ public class ManageRestaurantINFOJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageRestaurantJPanel
      */
-    public ManageRestaurantINFOJPanel() {
+    JPanel userProcessContainer; UserAccount account; Enterprise enterprise; Organization organization;
+    public ManageRestaurantINFOJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, Organization organization) {
+        this.userProcessContainer=userProcessContainer;
+        this.account=account;
+        this.enterprise=enterprise;
+        this.organization=organization;
         initComponents();
     }
 

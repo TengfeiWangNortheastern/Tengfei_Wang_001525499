@@ -46,14 +46,15 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         System.out.println(deliveryManOrganization.getWorkQueue().getWorkRequestList().size());
         for (WorkRequest request : deliveryManOrganization.getWorkQueue().getWorkRequestList()) {
-            Object[] row = new Object[5];
-            row[0] = request;
+            Object[] row = new Object[7];
+            row[0] = request.getOrder();
             row[1] = request.getSender().getEmployee().getName();
             row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
-            row[3]="3";
-            row[4] = request.getStatus();
-            
-            System.out.println("Table polulated");
+            row[3] =request.getDeliver();
+            row[4] = request;
+            String result = ((LabTestWorkRequest) request).getTestResult();
+            row[5] = result == null ? "Waiting" : result;
+            row[6] = request.getFeedbackOfDeliveryManFromCustomer();
             model.addRow(row);
         }
         System.out.println("Table polulated out");
@@ -78,20 +79,20 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
 
         tblWorkRequests.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Message", "Restaurant", "DeliveryMan", "Customer", "Status"
+                "Order", "Customer", "Restaurant", "DeliveryMan", "Status", "Result", "CustomerComment"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -103,14 +104,8 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tblWorkRequests);
-        if (tblWorkRequests.getColumnModel().getColumnCount() > 0) {
-            tblWorkRequests.getColumnModel().getColumn(0).setResizable(false);
-            tblWorkRequests.getColumnModel().getColumn(1).setResizable(false);
-            tblWorkRequests.getColumnModel().getColumn(3).setResizable(false);
-            tblWorkRequests.getColumnModel().getColumn(4).setResizable(false);
-        }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 58, 420, 96));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 58, 790, 140));
 
         assignJButton.setText("Assign to me");
         assignJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -145,8 +140,8 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         
-        WorkRequest request = (WorkRequest)tblWorkRequests.getValueAt(selectedRow, 0);
-        request.setReceiver(userAccount);
+        WorkRequest request = (WorkRequest)tblWorkRequests.getValueAt(selectedRow, 4);
+        request.setDeliver(userAccount);
         request.setStatus("Pending");
         populateTable();
         

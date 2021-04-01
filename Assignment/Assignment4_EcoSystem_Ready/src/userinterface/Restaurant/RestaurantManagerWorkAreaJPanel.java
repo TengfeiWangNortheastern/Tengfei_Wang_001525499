@@ -89,7 +89,10 @@ public class RestaurantManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void ManageRestaurantJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageRestaurantJButtonActionPerformed
         // TODO add your handling code here:
-        
+        ManageRestaurantINFOJPanel bpjp = new ManageRestaurantINFOJPanel(userProcessContainer,account,enterprise,organization);
+        userProcessContainer.add("ManageRestaurantINFOJPanel", bpjp);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_ManageRestaurantJButtonActionPerformed
 
     private void manageMenuJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageMenuJButtonActionPerformed

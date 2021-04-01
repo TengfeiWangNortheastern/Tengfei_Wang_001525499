@@ -13,10 +13,20 @@ import java.util.ArrayList;
  */
 public class Order {
     ArrayList<OrderItem> orderItemList;
-
+    private int totalPrice;
     public Order() {
+
         this.orderItemList=new ArrayList<OrderItem>();
     }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
 
     public ArrayList<OrderItem> getOrderItemList() {
         return orderItemList;
@@ -42,4 +52,10 @@ public class Order {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "Order"+": $ "+ this.getTotalPrice();
+    }
+    
 }

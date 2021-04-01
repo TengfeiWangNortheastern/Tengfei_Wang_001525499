@@ -8,6 +8,8 @@ package userinterface.Restaurant;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Order.Food;
+import Business.Order.Order;
+import Business.Organization.DeliveryManOrganization;
 import Business.Organization.Organization;
 import Business.Organization.RestaurantOrganization;
 import Business.UserAccount.UserAccount;
@@ -50,13 +52,15 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[4];
-            row[0] = request;
-            row[1] = request.getReceiver();
-            row[2] = request.getStatus();
+            Object[] row = new Object[7];
+            row[0] = request.getOrder();
+            row[1]=request.getSender();
+            row[2] = request.getReceiver();
+            row[3] =request.getDeliver();
+            row[4] = request;
             String result = ((LabTestWorkRequest) request).getTestResult();
-            row[3] = result == null ? "Waiting" : result;
-            
+            row[5] = result == null ? "Waiting" : result;
+            row[6] = request.getFeedbackOfRestaurantFromCustomer();
             model.addRow(row);
         }
     }
@@ -71,50 +75,17 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblworkRequestJTable = new javax.swing.JTable();
         requestTestJButton = new javax.swing.JButton();
         refreshTestJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
         backJButton = new javax.swing.JButton();
         requestTestJButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblworkRequestJTable = new javax.swing.JTable();
+        requestTestJButton2 = new javax.swing.JButton();
 
-        tblworkRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Message", "Receiver", "Status", "Result"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tblworkRequestJTable);
-        if (tblworkRequestJTable.getColumnModel().getColumnCount() > 0) {
-            tblworkRequestJTable.getColumnModel().getColumn(0).setResizable(false);
-            tblworkRequestJTable.getColumnModel().getColumn(1).setResizable(false);
-            tblworkRequestJTable.getColumnModel().getColumn(2).setResizable(false);
-            tblworkRequestJTable.getColumnModel().getColumn(3).setResizable(false);
-        }
-
-        requestTestJButton.setText("Deliver Request");
+        requestTestJButton.setText("Add Order");
         requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestTestJButtonActionPerformed(evt);
@@ -140,10 +111,45 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
             }
         });
 
-        requestTestJButton1.setText("Delete request");
+        requestTestJButton1.setText("Delete order");
         requestTestJButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestTestJButton1ActionPerformed(evt);
+            }
+        });
+
+        tblworkRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Order", "Customer", "Restaurant", "DeliveryMan", "Status", "Result", "Comment"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblworkRequestJTable);
+
+        requestTestJButton2.setText("Order Deliver");
+        requestTestJButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                requestTestJButton2ActionPerformed(evt);
             }
         });
 
@@ -155,25 +161,24 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(backJButton)
-                        .addGap(86, 607, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
                         .addComponent(refreshTestJButton)
-                        .addGap(103, 103, 103))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(192, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(backJButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(requestTestJButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(requestTestJButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(requestTestJButton1)))
-                .addGap(118, 118, 118))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(requestTestJButton1)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,17 +190,19 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
                         .addComponent(refreshTestJButton)
                         .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(requestTestJButton)
                     .addComponent(backJButton)
-                    .addComponent(requestTestJButton1))
+                    .addComponent(requestTestJButton1)
+                    .addComponent(requestTestJButton2))
                 .addContainerGap(183, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
+        
         
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add("RequestLabTestJPanel", new RequestDeliveringJPanel(userProcessContainer, userAccount,enterprise));
@@ -220,15 +227,41 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRowIndex=tblworkRequestJTable.getSelectedRow();
         if(selectedRowIndex<0){
-            JOptionPane.showMessageDialog(this, "Please select a product row");
+            JOptionPane.showMessageDialog(this, "Please select a  row");
             return;
         }
-        WorkRequest product= (WorkRequest) this.tblworkRequestJTable.getValueAt(selectedRowIndex, 0);
+        //delete request
+        WorkRequest product= (WorkRequest) this.tblworkRequestJTable.getValueAt(selectedRowIndex, 4);
         
         userAccount.getWorkQueue().removeWorkRequest(product);
-        
+        //delete order
+        Order order;
+        order=(Order)this.tblworkRequestJTable.getValueAt(selectedRowIndex, 0);
+        userAccount.getWorkQueue().getMasterOrderList().removeOrder(order);
         populateRequestTable();
     }//GEN-LAST:event_requestTestJButton1ActionPerformed
+
+    private void requestTestJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButton2ActionPerformed
+        int selectedRowIndex=tblworkRequestJTable.getSelectedRow();
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a  row");
+            return;
+        }
+        //delete request
+        WorkRequest request= (WorkRequest) this.tblworkRequestJTable.getValueAt(selectedRowIndex, 4);
+        Organization deliverOrganization=null;
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            if (organization instanceof DeliveryManOrganization) {
+                    deliverOrganization = organization;
+                    break;
+                }
+         }
+        if (deliverOrganization != null) {
+             deliverOrganization.getWorkQueue().getWorkRequestList().add(request);
+        }
+        request.setStatus("Delivering");
+        populateRequestTable();
+    }//GEN-LAST:event_requestTestJButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
@@ -237,6 +270,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton requestTestJButton;
     private javax.swing.JButton requestTestJButton1;
+    private javax.swing.JButton requestTestJButton2;
     private javax.swing.JTable tblworkRequestJTable;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables

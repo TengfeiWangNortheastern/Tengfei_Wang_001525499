@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Mihir Mehta / Hechen Gao
+ * @author 
  */
 public class CreateNewProductJPanel extends javax.swing.JPanel {
 
@@ -44,16 +44,16 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(650, 600));
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setText("Create New Product");
+        jLabel1.setText("Create New Food");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLabel2.setText("Product ID:");
+        jLabel2.setText("Food ID:");
 
         txtId.setEditable(false);
         txtId.setBackground(java.awt.Color.white);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLabel3.setText("Product Price:");
+        jLabel3.setText("Food Price:");
 
         btnAdd.setText("Add Product");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -70,10 +70,10 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
         });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLabel5.setText("Product Name:");
+        jLabel5.setText("Food Name:");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLabel4.setText("Product Availability:");
+        jLabel4.setText("Food Availability:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

@@ -28,7 +28,10 @@ public class ManageFoodCatalogJPanel extends javax.swing.JPanel {
         userProcessContainer = upc;
         supplier = s;
         lblSupplier.setText("Restaurant : " + s.getUsername());
+        this.foodCatalog=supplier.getWorkQueue().getFoodCatalog();
         refreshTable();
+        System.out.println(foodCatalog);
+
     }
 
     public void refreshTable() {

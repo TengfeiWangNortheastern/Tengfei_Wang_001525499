@@ -5,12 +5,14 @@
 package userinterface.CustomerRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,16 +26,18 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     EcoSystem ecosystem;
     private UserAccount userAccount;
     private Organization organization;
+    private Enterprise enterprise;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
-    public CustomerAreaJPanel(JPanel userProcessContainer, UserAccount account,EcoSystem ecosystem,Organization organization) {
+    public CustomerAreaJPanel(JPanel userProcessContainer, UserAccount account,EcoSystem ecosystem,Organization organization,Enterprise enterprise) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
         this.ecosystem=ecosystem;
         this.userAccount = account;
         this.organization=organization;
+        this.enterprise=enterprise;
         //valueLabel.setText(enterprise.getName());
         populateRequestTable();
     }
@@ -43,13 +47,15 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
         model.setRowCount(0);
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
-            Object[] row = new Object[4];
-            row[0] = request.getMessage();
-            row[1] = request.getReceiver();
-            row[2] = request.getStatus();
+            Object[] row = new Object[7];
+            row[0] = request.getOrder();
+            row[1]=request.getSender();
+            row[2] = request.getReceiver();
+            row[3]=request.getDeliver();
+            row[4] = request;
             String result = ((LabTestWorkRequest) request).getTestResult();
-            row[3] = result == null ? "Waiting" : result;
-
+            row[5] = result == null ? "Waiting" : result;
+            row[6]=""; //comment waiting to be finished
             model.addRow(row);
         }
     }
@@ -71,23 +77,24 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
         backJButton = new javax.swing.JButton();
+        requestTestJButton1 = new javax.swing.JButton();
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Message", "Receiver", "Status", "Result"
+                "Order", "Customer", "Restaurant", "DeliveryMan", "Status", "Result", "Comment"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, true, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -104,6 +111,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
             workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
             workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
         requestTestJButton.setText("Request Test");
@@ -132,6 +140,13 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        requestTestJButton1.setText("Delete request");
+        requestTestJButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                requestTestJButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,6 +156,8 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 .addComponent(backJButton)
                 .addGap(128, 128, 128)
                 .addComponent(requestTestJButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(requestTestJButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -170,14 +187,15 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(requestTestJButton)
-                    .addComponent(backJButton))
+                    .addComponent(backJButton)
+                    .addComponent(requestTestJButton1))
                 .addContainerGap(198, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("RequestLabTestJPanel", new RequestFoodTestJPanel(userProcessContainer, userAccount,ecosystem));
+        userProcessContainer.add("RequestLabTestJPanel", new RequestFoodTestJPanel(userProcessContainer, userAccount,enterprise));
         layout.next(userProcessContainer);
  
         
@@ -197,12 +215,27 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
+    private void requestTestJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButton1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex=workRequestJTable.getSelectedRow();
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a product row");
+            return;
+        }
+        WorkRequest request= (WorkRequest) this.workRequestJTable.getValueAt(selectedRowIndex, 4);
+        
+        userAccount.getWorkQueue().removeWorkRequest(request);
+        
+        populateRequestTable();
+    }//GEN-LAST:event_requestTestJButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton requestTestJButton;
+    private javax.swing.JButton requestTestJButton1;
     private javax.swing.JLabel valueLabel;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
