@@ -84,6 +84,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblworkRequestJTable = new javax.swing.JTable();
         requestTestJButton2 = new javax.swing.JButton();
+        requestTestJButton3 = new javax.swing.JButton();
 
         requestTestJButton.setText("Add Order");
         requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -153,6 +154,13 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
             }
         });
 
+        requestTestJButton3.setText("View order Detail");
+        requestTestJButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                requestTestJButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -178,6 +186,8 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
                         .addComponent(requestTestJButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(requestTestJButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(requestTestJButton3)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -196,7 +206,8 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
                     .addComponent(requestTestJButton)
                     .addComponent(backJButton)
                     .addComponent(requestTestJButton1)
-                    .addComponent(requestTestJButton2))
+                    .addComponent(requestTestJButton2)
+                    .addComponent(requestTestJButton3))
                 .addContainerGap(183, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -263,6 +274,21 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         populateRequestTable();
     }//GEN-LAST:event_requestTestJButton2ActionPerformed
 
+    private void requestTestJButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButton3ActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblworkRequestJTable.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a  row");
+            return;
+        }
+        //delete request
+        Order order = (Order)this.tblworkRequestJTable.getValueAt(selectedRowIndex, 0);
+        
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("ViewOrderDetailJPanel", new ViewOrderDetailJPanel(userProcessContainer, order));
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_requestTestJButton3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JLabel enterpriseLabel;
@@ -271,6 +297,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JButton requestTestJButton;
     private javax.swing.JButton requestTestJButton1;
     private javax.swing.JButton requestTestJButton2;
+    private javax.swing.JButton requestTestJButton3;
     private javax.swing.JTable tblworkRequestJTable;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables

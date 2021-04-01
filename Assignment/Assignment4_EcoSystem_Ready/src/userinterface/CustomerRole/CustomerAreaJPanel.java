@@ -78,6 +78,12 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         valueLabel = new javax.swing.JLabel();
         backJButton = new javax.swing.JButton();
         requestTestJButton1 = new javax.swing.JButton();
+        btncommentRestaurantJButton2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        taRestaurantjTextArea1 = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        taCustomerjTextArea = new javax.swing.JTextArea();
+        btncommentRestaurantJButton3 = new javax.swing.JButton();
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -147,18 +153,32 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btncommentRestaurantJButton2.setText("Restaurant Comment");
+        btncommentRestaurantJButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncommentRestaurantJButton2ActionPerformed(evt);
+            }
+        });
+
+        taRestaurantjTextArea1.setColumns(20);
+        taRestaurantjTextArea1.setRows(5);
+        jScrollPane2.setViewportView(taRestaurantjTextArea1);
+
+        taCustomerjTextArea.setColumns(20);
+        taCustomerjTextArea.setRows(5);
+        jScrollPane3.setViewportView(taCustomerjTextArea);
+
+        btncommentRestaurantJButton3.setText("DelieveryMan Comment");
+        btncommentRestaurantJButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncommentRestaurantJButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backJButton)
-                .addGap(128, 128, 128)
-                .addComponent(requestTestJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(requestTestJButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -172,6 +192,21 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
                         .addComponent(refreshTestJButton)))
                 .addGap(103, 103, 103))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(backJButton)
+                        .addGap(128, 128, 128)
+                        .addComponent(requestTestJButton))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btncommentRestaurantJButton2)
+                    .addComponent(requestTestJButton1)
+                    .addComponent(btncommentRestaurantJButton3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +224,15 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                     .addComponent(requestTestJButton)
                     .addComponent(backJButton)
                     .addComponent(requestTestJButton1))
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btncommentRestaurantJButton2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btncommentRestaurantJButton3))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -229,13 +272,51 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         populateRequestTable();
     }//GEN-LAST:event_requestTestJButton1ActionPerformed
 
+    private void btncommentRestaurantJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncommentRestaurantJButton2ActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex=workRequestJTable.getSelectedRow();
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a product row");
+            return;
+        }
+        WorkRequest request= (WorkRequest) this.workRequestJTable.getValueAt(selectedRowIndex, 4);
+        
+        request.setFeedbackOfRestaurantFromCustomer(taRestaurantjTextArea1.getText());
+        JOptionPane.showMessageDialog(this, "Comment sent to Restaurant!");
+
+        populateRequestTable();
+    }//GEN-LAST:event_btncommentRestaurantJButton2ActionPerformed
+
+    private void btncommentRestaurantJButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncommentRestaurantJButton3ActionPerformed
+        // TODO add your handling code here:        int selectedRowIndex=workRequestJTable.getSelectedRow();
+        int selectedRowIndex = workRequestJTable.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a product row");
+            return;
+        }
+        WorkRequest request = (WorkRequest) this.workRequestJTable.getValueAt(selectedRowIndex, 4);
+
+        request.setFeedbackOfDeliveryManFromCustomer(taCustomerjTextArea.getText());
+        JOptionPane.showMessageDialog(this, "Comment sent to Customer!");
+
+        populateRequestTable();
+        
+    }//GEN-LAST:event_btncommentRestaurantJButton3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
+    private javax.swing.JButton btncommentRestaurantJButton2;
+    private javax.swing.JButton btncommentRestaurantJButton3;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton requestTestJButton;
     private javax.swing.JButton requestTestJButton1;
+    private javax.swing.JTextArea taCustomerjTextArea;
+    private javax.swing.JTextArea taRestaurantjTextArea1;
     private javax.swing.JLabel valueLabel;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables

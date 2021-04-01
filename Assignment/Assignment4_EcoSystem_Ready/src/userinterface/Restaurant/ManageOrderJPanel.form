@@ -39,6 +39,8 @@
                       <Component id="requestTestJButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="requestTestJButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="requestTestJButton3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -64,6 +66,7 @@
                   <Component id="backJButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="requestTestJButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="requestTestJButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="requestTestJButton3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="183" max="32767" attributes="0"/>
           </Group>
@@ -149,6 +152,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="requestTestJButton2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="requestTestJButton3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="View order Detail"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="requestTestJButton3ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

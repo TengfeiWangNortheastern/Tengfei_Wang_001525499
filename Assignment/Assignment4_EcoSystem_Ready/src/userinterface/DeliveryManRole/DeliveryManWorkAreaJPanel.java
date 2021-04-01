@@ -105,7 +105,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblWorkRequests);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 58, 790, 140));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 58, 830, 140));
 
         assignJButton.setText("Assign to me");
         assignJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +113,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
                 assignJButtonActionPerformed(evt);
             }
         });
-        add(assignJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 215, -1, -1));
+        add(assignJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
 
         processJButton.setText("Process");
         processJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -121,7 +121,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
                 processJButtonActionPerformed(evt);
             }
         });
-        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 215, -1, -1));
+        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, -1, -1));
 
         refreshJButton.setText("Refresh");
         refreshJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +155,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         
-        LabTestWorkRequest request = (LabTestWorkRequest)tblWorkRequests.getValueAt(selectedRow, 0);
+        LabTestWorkRequest request = (LabTestWorkRequest)tblWorkRequests.getValueAt(selectedRow, 4);
      
         request.setStatus("Processing");
         
