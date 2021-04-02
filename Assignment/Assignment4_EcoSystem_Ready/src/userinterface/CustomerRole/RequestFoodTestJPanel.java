@@ -104,7 +104,7 @@ public class RequestFoodTestJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblSupplier.setText("Supplier:");
+        lblSupplier.setText("Restaurant:");
 
         cmbSupplier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,14 +118,14 @@ public class RequestFoodTestJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnSearchProduct.setText("Search Product");
+        btnSearchProduct.setText("Search Food");
         btnSearchProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchProductActionPerformed(evt);
             }
         });
 
-        lblProductCatalogue.setText("Product Catalog:");
+        lblProductCatalogue.setText("Food Menu:");
 
         tblProductCatalog.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
         tblProductCatalog.setModel(new javax.swing.table.DefaultTableModel(

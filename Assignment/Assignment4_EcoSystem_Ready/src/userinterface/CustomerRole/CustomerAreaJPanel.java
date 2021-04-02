@@ -38,7 +38,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         this.organization=organization;
         this.enterprise=enterprise;
-        //valueLabel.setText(enterprise.getName());
+        valueLabel.setText(enterprise.getName());
         populateRequestTable();
     }
     

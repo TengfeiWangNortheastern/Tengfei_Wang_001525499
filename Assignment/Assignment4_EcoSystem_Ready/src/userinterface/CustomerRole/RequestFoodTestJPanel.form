@@ -126,7 +126,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblSupplier">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Supplier:"/>
+        <Property name="text" type="java.lang.String" value="Restaurant:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbSupplier">
@@ -146,7 +146,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnSearchProduct">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Search Product"/>
+        <Property name="text" type="java.lang.String" value="Search Food"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchProductActionPerformed"/>
@@ -154,7 +154,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblProductCatalogue">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Product Catalog:"/>
+        <Property name="text" type="java.lang.String" value="Food Menu:"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

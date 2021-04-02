@@ -52,7 +52,7 @@ public class RestaurantManagerWorkAreaJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("My Work Area -Adminstrative Role");
+        jLabel1.setText("My Work Area -Restaurant Manager");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
 
         userJButton.setText("Manage Restaurant Info");
@@ -80,11 +80,11 @@ public class RestaurantManagerWorkAreaJPanel extends javax.swing.JPanel {
         add(manageOrganizationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 170, -1));
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("Restaurant :");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 120, 30));
+        enterpriseLabel.setText("Restaurant Manager :");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 200, 30));
 
         valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 130, -1));
+        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 130, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void ManageRestaurantJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageRestaurantJButtonActionPerformed

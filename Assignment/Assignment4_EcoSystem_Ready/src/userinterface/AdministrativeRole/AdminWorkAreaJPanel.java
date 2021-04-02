@@ -36,6 +36,9 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         manageOrganizationJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
+        btnMCus = new javax.swing.JButton();
+        btnMres = new javax.swing.JButton();
+        btnMDeliv = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -43,13 +46,13 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setText("My Work Area -Adminstrative Role");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
 
-        userJButton.setText("Manage User");
+        userJButton.setText("Manage All Users");
         userJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userJButtonActionPerformed(evt);
             }
         });
-        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 150, -1));
+        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 150, -1));
 
         manageEmployeeJButton.setText("Manage Employee");
         manageEmployeeJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +76,30 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
         valueLabel.setText("<value>");
         add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 130, -1));
+
+        btnMCus.setText("Manage Customers");
+        btnMCus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMCusActionPerformed(evt);
+            }
+        });
+        add(btnMCus, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, 150, -1));
+
+        btnMres.setText("Manage Restaurants");
+        btnMres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMresActionPerformed(evt);
+            }
+        });
+        add(btnMres, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 150, -1));
+
+        btnMDeliv.setText("Manage DeliveryMan");
+        btnMDeliv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMDelivActionPerformed(evt);
+            }
+        });
+        add(btnMDeliv, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
@@ -101,9 +128,39 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_manageOrganizationJButtonActionPerformed
+
+    private void btnMCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMCusActionPerformed
+        // TODO add your handling code here:
+        ManageCustomersJPanel muajp = new ManageCustomersJPanel(userProcessContainer, enterprise);
+        userProcessContainer.add("ManageCustomersJPanel", muajp);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnMCusActionPerformed
+
+    private void btnMresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMresActionPerformed
+        // TODO add your handling code here:
+        ManageRestaurantAccountJPanel muajp = new ManageRestaurantAccountJPanel(userProcessContainer, enterprise);
+        userProcessContainer.add("ManageRestaurantAccountJPanel", muajp);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnMresActionPerformed
+
+    private void btnMDelivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMDelivActionPerformed
+        // TODO add your handling code here:
+        ManageDeliverymanJPanel muajp = new ManageDeliverymanJPanel(userProcessContainer, enterprise);
+        userProcessContainer.add("ManageDeliverymanJPanel", muajp);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnMDelivActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMCus;
+    private javax.swing.JButton btnMDeliv;
+    private javax.swing.JButton btnMres;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manageEmployeeJButton;

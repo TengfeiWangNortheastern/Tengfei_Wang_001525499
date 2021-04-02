@@ -37,7 +37,7 @@ public class RequestDeliveringJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.userAccount = account;
-//        valueLabel.setText(enterprise.getName());
+        valueLabel.setText(enterprise.getName());
     }
 
     /**

@@ -49,7 +49,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Result");
+        jLabel1.setText("Delivery Result");
 
         backJButton.setText("Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +73,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
                         .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                         .addComponent(submitJButton)
                         .addGap(63, 63, 63))))
         );

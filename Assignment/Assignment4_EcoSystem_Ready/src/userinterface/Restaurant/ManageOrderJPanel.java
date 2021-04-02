@@ -101,7 +101,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         });
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
+        enterpriseLabel.setText("Restaurant Manager:");
 
         valueLabel.setText("<value>");
 
@@ -169,10 +169,10 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addComponent(enterpriseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                        .addGap(105, 105, 105)
                         .addComponent(refreshTestJButton)
                         .addGap(103, 103, 103))
                     .addGroup(layout.createSequentialGroup()
@@ -188,7 +188,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
                         .addComponent(requestTestJButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(requestTestJButton3)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 133, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
